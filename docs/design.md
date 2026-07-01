@@ -52,3 +52,5 @@ Operation payload shapes are documented in
 [Operation Payloads](operation-payloads.md).
 Operation result shapes are documented in
 [Operation Results](operation-results.md).
+Operation validation rules are documented in
+[Operation Validation](operation-validation.md).

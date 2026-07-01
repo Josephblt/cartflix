@@ -9,6 +9,8 @@ operation layer instead of editing storage directly.
 
 Payload shapes are documented in [Operation Payloads](operation-payloads.md).
 Result shapes are documented in [Operation Results](operation-results.md).
+Validation rules are documented in
+[Operation Validation](operation-validation.md).
 
 ## Operation Type Names
 
