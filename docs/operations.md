@@ -8,6 +8,7 @@ Carty, the UI, import tools, and future automations should all target this
 operation layer instead of editing storage directly.
 
 Payload shapes are documented in [Operation Payloads](operation-payloads.md).
+Result shapes are documented in [Operation Results](operation-results.md).
 
 ## Operation Type Names
 

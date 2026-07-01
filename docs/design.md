@@ -50,3 +50,5 @@ belong above it.
 
 Operation payload shapes are documented in
 [Operation Payloads](operation-payloads.md).
+Operation result shapes are documented in
+[Operation Results](operation-results.md).
