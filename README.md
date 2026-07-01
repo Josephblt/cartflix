@@ -31,7 +31,7 @@ shopping-list domain, where constraints are more valuable than improvisation.
 - Keep the app local-first and simple to run.
 - Make shopping-list management fast from both UI and conversation.
 - Keep Carty narrow, practical, and predictable.
-- Separate app code, agent behavior, and example data clearly.
+- Separate app code, agent behavior, runtime data, and documentation clearly.
 - Avoid turning a household tool into enterprise theater.
 
 ## Planned Structure
@@ -40,8 +40,7 @@ shopping-list domain, where constraints are more valuable than improvisation.
 cartflix/
   app/              # Cartflix application code
   agent/            # Carty instructions, guardrails, and workflows
-  data/
-    examples/       # Example list data for development and demos
+  data/             # Local runtime data
   docs/             # Design notes and implementation notes
 ```
 
