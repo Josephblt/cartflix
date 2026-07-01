@@ -34,3 +34,12 @@ Each data file has a matching model document:
 - `data/items.json`: [Item catalog](data/items.md)
 - `data/list.json`: [Active list](data/list.md)
 - `data/history.json`: [Purchase history](data/history.md)
+
+## Operation Layer
+
+Cartflix should mutate data through explicit operations rather than through
+ad-hoc file edits.
+
+The low-level operation set is documented in [Operations](operations.md). That
+layer defines what can change. User intent, policy, confirmation, and sequencing
+belong above it.

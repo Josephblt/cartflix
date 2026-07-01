@@ -4,6 +4,10 @@ File: `data/items.json`
 
 The item catalog stores known grocery items and their variants.
 
+Items and variants are durable entities and need stable IDs. Aliases are not
+durable entities. They are display strings addressed by their normalized text
+inside their parent scope.
+
 ## File Shape
 
 ```json
@@ -57,7 +61,8 @@ Fields:
 
 - `id`: stable item identifier.
 - `name`: canonical display name.
-- `aliases`: alternate names Carty can use to recognize the item.
+- `aliases`: alternate names Carty can use to recognize the item. Aliases do
+  not have IDs.
 - `variants`: known forms of the same item.
 
 ## Variant
@@ -77,7 +82,35 @@ Fields:
 
 - `id`: stable variant identifier within the item catalog.
 - `name`: canonical display name for the variant.
-- `aliases`: alternate names Carty can use to recognize the variant.
+- `aliases`: alternate names Carty can use to recognize the variant. Aliases do
+  not have IDs.
+
+## Alias Identity
+
+Aliases are identified by normalized text within their parent scope:
+
+- item aliases are scoped to an item
+- variant aliases are scoped to a variant
+
+Normalization is an internal comparison form, not the display text. The exact
+implementation can evolve, but the intended baseline is:
+
+- trim leading and trailing whitespace
+- lowercase
+- collapse repeated whitespace
+- compare without accents/diacritics
+- compare punctuation-insensitively
+
+Examples:
+
+```text
+"  Instant   Coffee " -> "instant coffee"
+"Café em Pó" -> "cafe em po"
+"Tomate-cereja" -> "tomate cereja"
+```
+
+The stored alias should preserve the human-readable display string. Cartflix can
+compute normalized values when loading the catalog or building lookup indexes.
 
 ## Deliberate Omissions
 
