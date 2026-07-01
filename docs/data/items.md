@@ -43,7 +43,17 @@ inside their parent scope.
 }
 ```
 
-## Item
+## Identifier Policy
+
+The item model has two durable entity types:
+
+- item
+- variant
+
+Only those durable entities get IDs. Item aliases and variant aliases do not get
+IDs.
+
+## Item Model
 
 An item is the product family: the thing the user means when they say "coffee",
 "milk", or "rice".
@@ -65,7 +75,7 @@ Fields:
   not have IDs.
 - `variants`: known forms of the same item.
 
-## Variant
+## Variant Model
 
 A variant is a known form of an item, such as a specific jar, pack, bottle, or
 box.
@@ -85,7 +95,7 @@ Fields:
 - `aliases`: alternate names Carty can use to recognize the variant. Aliases do
   not have IDs.
 
-## Alias Identity
+## Alias Model
 
 Aliases are identified by normalized text within their parent scope:
 
