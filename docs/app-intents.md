@@ -14,10 +14,9 @@ An app intent may map to:
 
 - one operation
 - multiple operations
-- no operation, if validation fails or confirmation is required
+- no operation, if app-level validation fails or confirmation is required
 
-The intent layer owns workflow decisions. The operation layer owns validation
-and mutation.
+The intent layer owns workflow decisions. The operation layer owns mutation.
 
 ## Rules
 
@@ -28,195 +27,99 @@ and mutation.
 - App intents should not bypass the operation executor.
 - Agent behavior is out of scope for this layer.
 
-## Catalog Intents
+## High-Level App Operations
 
-Catalog intents manage the item catalog from the app.
+The app has a deliberately small user-facing operation set:
 
-### Create Item
+- `activeList.product.add`
+- `activeList.product.editQuantity`
+- `activeList.product.remove`
+- `activeList.product.setChecked`
+- `activeList.checked.removeAll`
 
-Creates a catalog item and optional aliases.
+## `activeList.product.add`
 
-Possible operations:
+User adds a product to the active list.
+
+Possible low-level operations:
 
 - `catalog.item.add`
-
-### Rename Item
-
-Renames a catalog item.
-
-Possible operations:
-
-- `catalog.item.edit`
-
-### Delete Item
-
-Deletes a catalog item.
-
-Possible operations:
-
-- `catalog.item.remove`
-
-The intent should require confirmation when the item exists. The operation layer
-may still reject the removal when list or history entries reference the item.
-
-### Add Item Alias
-
-Adds an alias to an item.
-
-Possible operations:
-
-- `catalog.itemAlias.add`
-
-### Edit Item Alias
-
-Replaces an item alias display string.
-
-Possible operations:
-
-- `catalog.itemAlias.edit`
-
-### Remove Item Alias
-
-Removes an item alias.
-
-Possible operations:
-
-- `catalog.itemAlias.remove`
-
-### Create Variant
-
-Creates a variant under an item and optional aliases.
-
-Possible operations:
-
+  - creates `item.name` if the product is not known
 - `catalog.variant.add`
-
-### Rename Variant
-
-Renames a variant.
-
-Possible operations:
-
-- `catalog.variant.edit`
-
-### Delete Variant
-
-Deletes a variant.
-
-Possible operations:
-
-- `catalog.variant.remove`
-
-The intent should require confirmation when the variant exists. The operation
-layer may still reject the removal when list or history entries reference the
-variant.
-
-### Add Variant Alias
-
-Adds an alias to a variant.
-
-Possible operations:
-
+  - creates `variant.name` if the added product implies a specific variant
+- `catalog.itemAlias.add`
+  - adds alias text if the submitted product name should point to an item
 - `catalog.variantAlias.add`
-
-### Edit Variant Alias
-
-Replaces a variant alias display string.
-
-Possible operations:
-
-- `catalog.variantAlias.edit`
-
-### Remove Variant Alias
-
-Removes a variant alias.
-
-Possible operations:
-
-- `catalog.variantAlias.remove`
-
-## List Intents
-
-List intents manage the active shopping list.
-
-### Add List Entry
-
-Adds an item to the active list.
-
-Possible operations:
-
+  - adds alias text if the submitted product name should point to a variant
 - `list.entry.add`
+  - creates the active list entry with `itemId`, optional `variantId`,
+    `quantity`, and `checked=false`
 
-### Edit List Entry
+## `activeList.product.editQuantity`
 
-Changes a list entry's item, variant, quantity, or bought state.
+User edits the quantity of an unchecked product in the active list.
 
-Possible operations:
+Possible low-level operations:
 
 - `list.entry.edit`
+  - edits `entry.quantity`
 
-### Remove List Entry
+App-level rule:
 
-Removes one active list entry.
+- checked products cannot have their quantity edited
 
-Possible operations:
+## `activeList.product.remove`
+
+User removes an unchecked product from the active list.
+
+Possible low-level operations:
 
 - `list.entry.remove`
+  - removes the active list entry
 
-### Mark Entry Bought
+App-level rule:
 
-Marks a list entry as bought and creates the matching history entry.
+- checked products cannot be removed individually
 
-Possible operations:
+## `activeList.product.setChecked`
+
+User checks or unchecks a product in the active list.
+
+When checking, the user may set the product price.
+
+### Checking A Product
+
+Possible low-level operations:
 
 - `list.entry.edit`
+  - edits `entry.checked=true`
 - `history.entry.add`
+  - creates a history entry with the same `entryId`, `itemId`, `variantId`,
+    `quantity`, `purchasedAt`, and optional `price`
 
-### Undo Bought Entry
+### Unchecking A Product
 
-Marks a list entry as not bought and removes the matching history entry.
-
-Possible operations:
+Possible low-level operations:
 
 - `list.entry.edit`
+  - edits `entry.checked=false`
 - `history.entry.remove`
+  - removes the matching history entry by `entryId`
 
-### Archive Bought Entries
+## `activeList.checked.removeAll`
 
-Removes bought entries from the active list while keeping their history entries.
+User removes all checked products from the active list.
 
-Possible operations:
+When removing checked products, the user may set the purchase location for those
+products.
 
+Possible low-level operations:
+
+- `history.entry.edit`
+  - edits `history.purchaseLocation` for each checked entry when a location is
+    provided
 - `list.entry.remove`
-
-If archive metadata is supplied, such as purchase location, the intent may also
-update matching history entries.
-
-Possible operations:
-
-- `history.entry.edit`
-
-## History Intents
-
-History intents manage purchase records.
-
-### Edit History Entry
-
-Changes purchase metadata.
-
-Possible operations:
-
-- `history.entry.edit`
-
-### Remove History Entry
-
-Removes a purchase record.
-
-Possible operations:
-
-- `history.entry.remove`
-
-This intent should require confirmation.
+  - removes each checked entry from the active list
 
 ## Intent Output
 
@@ -224,7 +127,7 @@ An intent resolves to an operation plan.
 
 ```json
 {
-  "intent": "markEntryBought",
+  "intent": "activeList.product.setChecked",
   "operations": [
     {
       "type": "list.entry.edit",
