@@ -13,8 +13,7 @@ An item is the product family: the thing the user means when they say "coffee",
   "name": "Instant Coffee",
   "aliases": [
     "coffee",
-    "instant coffee",
-    "cafe soluvel"
+    "instant coffee"
   ],
   "variants": [
     {

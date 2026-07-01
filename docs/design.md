@@ -17,15 +17,3 @@ cartflix/
   data/     # Local runtime data
   docs/     # Notes and design decisions
 ```
-
-## First Slice
-
-The first useful version should support:
-
-- viewing the list
-- adding an item
-- checking an item off
-- removing an item
-- persisting the list locally
-
-Agent integration should wait until the app has a stable data contract.
