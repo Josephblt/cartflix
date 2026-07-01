@@ -12,15 +12,36 @@ operation layer instead of editing storage directly.
 Items and variants are addressed by stable opaque UUIDs. Aliases are addressed
 by normalized alias text within their parent scope.
 
+### Item Operations
+
+Items are top-level catalog entities.
+
 - add item
 - edit item
 - remove item
-- add alias
-- edit alias
-- remove alias
+
+### Item Alias Operations
+
+Item aliases belong to an item. They are addressed by normalized alias text
+inside that item.
+
+- add item alias
+- edit item alias
+- remove item alias
+
+### Variant Operations
+
+Variants belong to an item, but each variant still has its own opaque UUID.
+
 - add variant
 - edit variant
 - remove variant
+
+### Variant Alias Operations
+
+Variant aliases belong to a variant. They are addressed by normalized alias text
+inside that variant.
+
 - add variant alias
 - edit variant alias
 - remove variant alias
@@ -30,6 +51,8 @@ by normalized alias text within their parent scope.
 The active list is one permanent list. Operations target entries on that list.
 Entries are addressed by stable opaque UUIDs.
 
+### List Entry Operations
+
 - add entry
 - edit entry
 - remove entry
@@ -37,6 +60,8 @@ Entries are addressed by stable opaque UUIDs.
 ## History Operations
 
 History stores purchased entries and notable purchase metadata.
+
+### History Entry Operations
 
 - add entry
 - edit entry
