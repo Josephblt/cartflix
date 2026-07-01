@@ -7,6 +7,32 @@ user intent maps to them.
 Carty, the UI, import tools, and future automations should all target this
 operation layer instead of editing storage directly.
 
+## Operation Type Names
+
+Operation types use this shape:
+
+```text
+<domain>.<entity>.<action>
+```
+
+Rules:
+
+- `domain` is one of `catalog`, `list`, or `history`
+- `entity` is singular and lower camel case
+- `action` is one of `add`, `edit`, or `remove`
+- compound entities use lower camel case, such as `itemAlias`
+- type names describe low-level mutations, not user intent or UI wording
+
+Examples:
+
+```text
+catalog.item.add
+catalog.itemAlias.edit
+catalog.variantAlias.remove
+list.entry.add
+history.entry.remove
+```
+
 ## Item Catalog Operations
 
 Items and variants are addressed by stable opaque UUIDs. Aliases are addressed
@@ -16,35 +42,35 @@ by normalized alias text within their parent scope.
 
 Items are top-level catalog entities.
 
-- add item
-- edit item
-- remove item
+- `catalog.item.add`
+- `catalog.item.edit`
+- `catalog.item.remove`
 
 ### Item Alias Operations
 
 Item aliases belong to an item. They are addressed by normalized alias text
 inside that item.
 
-- add item alias
-- edit item alias
-- remove item alias
+- `catalog.itemAlias.add`
+- `catalog.itemAlias.edit`
+- `catalog.itemAlias.remove`
 
 ### Variant Operations
 
 Variants belong to an item, but each variant still has its own opaque UUID.
 
-- add variant
-- edit variant
-- remove variant
+- `catalog.variant.add`
+- `catalog.variant.edit`
+- `catalog.variant.remove`
 
 ### Variant Alias Operations
 
 Variant aliases belong to a variant. They are addressed by normalized alias text
 inside that variant.
 
-- add variant alias
-- edit variant alias
-- remove variant alias
+- `catalog.variantAlias.add`
+- `catalog.variantAlias.edit`
+- `catalog.variantAlias.remove`
 
 ## List Operations
 
@@ -53,9 +79,9 @@ Entries are addressed by stable opaque UUIDs.
 
 ### List Entry Operations
 
-- add entry
-- edit entry
-- remove entry
+- `list.entry.add`
+- `list.entry.edit`
+- `list.entry.remove`
 
 ## History Operations
 
@@ -63,9 +89,9 @@ History stores purchased entries and notable purchase metadata.
 
 ### History Entry Operations
 
-- add entry
-- edit entry
-- remove entry
+- `history.entry.add`
+- `history.entry.edit`
+- `history.entry.remove`
 
 ## Abstraction Boundary
 
