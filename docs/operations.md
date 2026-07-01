@@ -7,6 +7,8 @@ user intent maps to them.
 Carty, the UI, import tools, and future automations should all target this
 operation layer instead of editing storage directly.
 
+Payload shapes are documented in [Operation Payloads](operation-payloads.md).
+
 ## Operation Type Names
 
 Operation types use this shape:

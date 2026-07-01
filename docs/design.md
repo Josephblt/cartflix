@@ -47,3 +47,6 @@ ad-hoc file edits.
 The low-level operation set is documented in [Operations](operations.md). That
 layer defines what can change. User intent, policy, confirmation, and sequencing
 belong above it.
+
+Operation payload shapes are documented in
+[Operation Payloads](operation-payloads.md).
