@@ -54,3 +54,5 @@ Operation result shapes are documented in
 [Operation Results](operation-results.md).
 Operation validation rules are documented in
 [Operation Validation](operation-validation.md).
+
+App-level workflow intent is documented in [App Intent Layer](app-intents.md).
