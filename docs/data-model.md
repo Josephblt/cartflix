@@ -123,7 +123,8 @@ with the same `entryId`. When that active entry is unchecked, Cartflix removes
 the matching history entry.
 
 Removing bought items only removes checked entries from the active list. Their
-history entries remain.
+history entries remain. If a purchase location is provided during that archive
+action, it is stored on the matching history entries.
 
 ```json
 {
@@ -134,7 +135,8 @@ history entries remain.
       "variantId": "instant_coffee_190g_jar",
       "quantity": "2",
       "price": "14.50",
-      "purchasedAt": "2026-07-01T12:00:00Z"
+      "purchasedAt": "2026-07-01T12:00:00Z",
+      "purchaseLocation": "Corner Market"
     }
   ]
 }
@@ -149,7 +151,8 @@ history entries remain.
   "variantId": "string | null",
   "quantity": "string | null",
   "price": "string | null",
-  "purchasedAt": "string"
+  "purchasedAt": "string",
+  "purchaseLocation": "string | null"
 }
 ```
 
@@ -161,3 +164,4 @@ Fields:
 - `quantity`: how many units/packages were bought, when specified.
 - `price`: total price paid for this history entry, when known.
 - `purchasedAt`: when the entry was checked as purchased.
+- `purchaseLocation`: where the item was bought, when known.
