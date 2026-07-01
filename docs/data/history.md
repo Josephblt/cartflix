@@ -18,9 +18,9 @@ action, it is stored on the matching history entries.
 {
   "entries": [
     {
-      "entryId": "01J2Z12N7ZBXAV8S9Y3Q6K5P4D",
-      "itemId": "01J2Z0Y9QK7M3X5V8B1D4N6P2R",
-      "variantId": "01J2Z0Z7D5P8W2R9N4X6K1T3VB",
+      "entryId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0101",
+      "itemId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0001",
+      "variantId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0003",
       "quantity": "2",
       "price": "14.50",
       "purchasedAt": "2026-07-01T12:00:00Z",
@@ -58,9 +58,9 @@ Fields:
 
 Fields:
 
-- `entryId`: stable opaque UID copied from the active list entry.
-- `itemId`: opaque UID of the purchased item.
-- `variantId`: opaque UID of the purchased variant, when known.
+- `entryId`: stable opaque UUID copied from the active list entry.
+- `itemId`: opaque UUID of the purchased item.
+- `variantId`: opaque UUID of the purchased variant, when known.
 - `quantity`: how many units/packages were bought, when specified.
 - `price`: total price paid for this history entry, when known.
 - `purchasedAt`: when the entry was checked as purchased.
