@@ -46,11 +46,12 @@ cartflix/
 
 ## Data Models
 
-The current data model notes live under `docs/data/`:
+The current data and app model notes live under `docs/`:
 
 - [Item catalog](docs/data/items.md)
 - [Active list](docs/data/list.md)
 - [Purchase history](docs/data/history.md)
+- [Authentication](docs/auth.md)
 
 The item model uses stable opaque UUIDs for items and variants. List entries also
 use opaque UUIDs. Item aliases and variant aliases do not have IDs; they are
