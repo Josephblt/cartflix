@@ -68,3 +68,45 @@ human-readable form, such as `160g jar`, `1L bottle`, or `12 pack`.
 
 This keeps the model small while still giving Carty enough context to interpret
 common shopping requests and rough price comparisons.
+
+## List
+
+Cartflix has one permanent active list.
+
+The list does not need an `id` or `name`. It is the current shopping intent.
+
+```json
+{
+  "entries": [
+    {
+      "itemId": "instant_coffee",
+      "variantId": "instant_coffee_190g_jar",
+      "quantity": "2",
+      "checked": false
+    }
+  ]
+}
+```
+
+## Entry
+
+An entry is an item currently wanted on the active list.
+
+```json
+{
+  "itemId": "string",
+  "variantId": "string | null",
+  "quantity": "string | null",
+  "checked": false
+}
+```
+
+Fields:
+
+- `itemId`: the item being requested.
+- `variantId`: the specific variant, when known.
+- `quantity`: how many units/packages are wanted, when specified.
+- `checked`: whether this entry has been bought during the current shopping
+  flow.
+
+Checked entries remain visible until the user archives them.
