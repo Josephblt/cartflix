@@ -18,9 +18,9 @@ action, it is stored on the matching history entries.
 {
   "entries": [
     {
-      "entryId": "entry_123",
-      "itemId": "instant_coffee",
-      "variantId": "instant_coffee_190g_jar",
+      "entryId": "01J2Z12N7ZBXAV8S9Y3Q6K5P4D",
+      "itemId": "01J2Z0Y9QK7M3X5V8B1D4N6P2R",
+      "variantId": "01J2Z0Z7D5P8W2R9N4X6K1T3VB",
       "quantity": "2",
       "price": "14.50",
       "purchasedAt": "2026-07-01T12:00:00Z",
@@ -58,9 +58,9 @@ Fields:
 
 Fields:
 
-- `entryId`: stable identifier copied from the active list entry.
-- `itemId`: the purchased item.
-- `variantId`: the purchased variant, when known.
+- `entryId`: stable opaque UID copied from the active list entry.
+- `itemId`: opaque UID of the purchased item.
+- `variantId`: opaque UID of the purchased variant, when known.
 - `quantity`: how many units/packages were bought, when specified.
 - `price`: total price paid for this history entry, when known.
 - `purchasedAt`: when the entry was checked as purchased.

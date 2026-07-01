@@ -4,9 +4,9 @@ File: `data/items.json`
 
 The item catalog stores known grocery items and their variants.
 
-Items and variants are durable entities and need stable IDs. Aliases are not
-durable entities. They are display strings addressed by their normalized text
-inside their parent scope.
+Items and variants are durable entities and need stable opaque UIDs. Aliases
+are not durable entities. They are display strings addressed by their normalized
+text inside their parent scope.
 
 ## File Shape
 
@@ -14,7 +14,7 @@ inside their parent scope.
 {
   "items": [
     {
-      "id": "instant_coffee",
+      "id": "01J2Z0Y9QK7M3X5V8B1D4N6P2R",
       "name": "Instant Coffee",
       "aliases": [
         "coffee",
@@ -22,7 +22,7 @@ inside their parent scope.
       ],
       "variants": [
         {
-          "id": "instant_coffee_160g_jar",
+          "id": "01J2Z0Z2NW9V6K3T4F8Q1M5C7A",
           "name": "160g jar",
           "aliases": [
             "160g",
@@ -30,7 +30,7 @@ inside their parent scope.
           ]
         },
         {
-          "id": "instant_coffee_190g_jar",
+          "id": "01J2Z0Z7D5P8W2R9N4X6K1T3VB",
           "name": "190g jar",
           "aliases": [
             "190g",
@@ -53,6 +53,13 @@ The item model has two durable entity types:
 Only those durable entities get IDs. Item aliases and variant aliases do not get
 IDs.
 
+IDs are opaque UIDs, not names or slugs. They must not encode the product name,
+variant name, category, or quantity. A renamed item keeps the same ID.
+
+Acceptable UID formats include UUID, ULID, nanoid, or another collision-resistant
+opaque string. The examples in this document use ULID-like strings only to make
+the shape concrete.
+
 ## Item Model
 
 An item is the product family: the thing the user means when they say "coffee",
@@ -69,7 +76,7 @@ An item is the product family: the thing the user means when they say "coffee",
 
 Fields:
 
-- `id`: stable item identifier.
+- `id`: stable opaque item UID.
 - `name`: canonical display name.
 - `aliases`: alternate names Carty can use to recognize the item. Aliases do
   not have IDs.
@@ -90,7 +97,7 @@ box.
 
 Fields:
 
-- `id`: stable variant identifier within the item catalog.
+- `id`: stable opaque variant UID within the item catalog.
 - `name`: canonical display name for the variant.
 - `aliases`: alternate names Carty can use to recognize the variant. Aliases do
   not have IDs.

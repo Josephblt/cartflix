@@ -36,8 +36,8 @@ Each data file has a matching model document:
 - `data/history.json`: [Purchase history](data/history.md)
 
 The item model is explicit: items and variants are durable catalog entities with
-stable IDs; aliases are lightweight strings addressed by normalized text within
-their parent item or variant.
+stable opaque UIDs; aliases are lightweight strings addressed by normalized text
+within their parent item or variant.
 
 ## Operation Layer
 

@@ -12,9 +12,9 @@ The list does not need an `id` or `name`. It is the current shopping intent.
 {
   "entries": [
     {
-      "entryId": "entry_123",
-      "itemId": "instant_coffee",
-      "variantId": "instant_coffee_190g_jar",
+      "entryId": "01J2Z12N7ZBXAV8S9Y3Q6K5P4D",
+      "itemId": "01J2Z0Y9QK7M3X5V8B1D4N6P2R",
+      "variantId": "01J2Z0Z7D5P8W2R9N4X6K1T3VB",
       "quantity": "2",
       "checked": false
     }
@@ -50,9 +50,9 @@ A `ListEntry` is an item currently wanted on the active list.
 
 Fields:
 
-- `entryId`: stable identifier shared with the matching history entry.
-- `itemId`: the item being requested.
-- `variantId`: the specific variant, when known.
+- `entryId`: stable opaque entry UID shared with the matching history entry.
+- `itemId`: opaque UID of the item being requested.
+- `variantId`: opaque UID of the specific variant, when known.
 - `quantity`: how many units/packages are wanted, when specified.
 - `checked`: whether this entry has been bought during the current shopping
   flow.

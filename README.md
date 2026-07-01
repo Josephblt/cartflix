@@ -52,9 +52,9 @@ The current data model notes live under `docs/data/`:
 - [Active list](docs/data/list.md)
 - [Purchase history](docs/data/history.md)
 
-The item model uses stable IDs for items and variants. Item aliases and variant
-aliases do not have IDs; they are addressed by normalized text within their
-parent scope.
+The item model uses stable opaque UIDs for items and variants. List entries also
+use opaque UIDs. Item aliases and variant aliases do not have IDs; they are
+addressed by normalized text within their parent scope.
 
 ## Cartflix and Carty
 

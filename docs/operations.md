@@ -9,8 +9,8 @@ operation layer instead of editing storage directly.
 
 ## Item Catalog Operations
 
-Items and variants are addressed by stable IDs. Aliases are addressed by
-normalized alias text within their parent scope.
+Items and variants are addressed by stable opaque UIDs. Aliases are addressed
+by normalized alias text within their parent scope.
 
 - add item
 - edit item
@@ -28,6 +28,7 @@ normalized alias text within their parent scope.
 ## List Operations
 
 The active list is one permanent list. Operations target entries on that list.
+Entries are addressed by stable opaque UIDs.
 
 - add entry
 - edit entry
