@@ -17,3 +17,20 @@ cartflix/
   data/     # Local runtime data
   docs/     # Notes and design decisions
 ```
+
+## Data Directory
+
+Cartflix stores runtime data as JSON files under `data/`.
+
+```text
+data/
+  items.json    # Item catalog
+  list.json     # Permanent active shopping list
+  history.json  # Purchase history
+```
+
+Each data file has a matching model document:
+
+- `data/items.json`: [Item catalog](data/items.md)
+- `data/list.json`: [Active list](data/list.md)
+- `data/history.json`: [Purchase history](data/history.md)
