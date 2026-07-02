@@ -27,6 +27,7 @@ data/
   items.json    # Item catalog
   list.json     # Permanent active shopping list
   history.json  # Purchase history
+  quips.json    # Opening and Carty greeting quips
   auth.json     # Local users and password hashes
 ```
 
@@ -35,11 +36,15 @@ Each data file has a matching model document:
 - `data/items.json`: [Item catalog](data/items.md)
 - `data/list.json`: [Active list](data/list.md)
 - `data/history.json`: [Purchase history](data/history.md)
+- `data/quips.json`: [Quips](data/quips.md)
 - `data/auth.json`: [Authentication](auth.md)
 
 The item model is explicit: items and variants are durable catalog entities with
 stable opaque UUIDs; aliases are lightweight strings addressed by normalized
 text within their parent item or variant.
+
+Quips are display data for Cartflix's personality layer. They are intentionally
+separate from Carty instructions and from grocery-list operation data.
 
 ## Operation Layer
 

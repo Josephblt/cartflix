@@ -51,11 +51,17 @@ The current data and app model notes live under `docs/`:
 - [Item catalog](docs/data/items.md)
 - [Active list](docs/data/list.md)
 - [Purchase history](docs/data/history.md)
+- [Quips](docs/data/quips.md)
 - [Authentication](docs/auth.md)
 
 The item model uses stable opaque UUIDs for items and variants. List entries also
 use opaque UUIDs. Item aliases and variant aliases do not have IDs; they are
 addressed by normalized text within their parent scope.
+
+Quips are lightweight UI personality data. They store opening comic lines and
+Carty greeting prompts without making them part of Carty's operating rules.
+Quips use stable opaque UUIDs so they can be safely edited through the operation
+layer.
 
 ## Cartflix and Carty
 

@@ -105,8 +105,8 @@ Fields:
 
 Fields:
 
-- `kind`: resource kind, such as `catalog.item`, `list.entry`, or
-  `history.entry`.
+- `kind`: resource kind, such as `catalog.item`, `list.entry`,
+  `history.entry`, or `quips.openingQuip`.
 - `id`: UUID of the changed resource when it has one.
 - `action`: one of `created`, `updated`, or `removed`.
 
@@ -118,6 +118,16 @@ Aliases do not have IDs. Alias changes still report their parent resource.
   "parentId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0001",
   "action": "created",
   "alias": "coffee"
+}
+```
+
+Quip changes report the quip UUID.
+
+```json
+{
+  "kind": "quips.cartyGreetingQuip",
+  "id": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0202",
+  "action": "updated"
 }
 ```
 

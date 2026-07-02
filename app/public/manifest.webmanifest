@@ -1,0 +1,23 @@
+{
+  "name": "Cartflix",
+  "short_name": "Cartflix",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#f7f6f2",
+  "theme_color": "#245b44",
+  "icons": [
+    {
+      "src": "icons/cartflix-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/cartflix-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

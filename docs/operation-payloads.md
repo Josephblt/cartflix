@@ -317,3 +317,87 @@ Fields:
 Fields:
 
 - `entryId`: history entry UUID.
+
+## Opening Quip Payloads
+
+### `quips.openingQuip.add`
+
+```json
+{
+  "text": "May the cart be with you."
+}
+```
+
+Fields:
+
+- `text`: display text for the new opening quip.
+
+### `quips.openingQuip.edit`
+
+```json
+{
+  "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0201",
+  "patch": {
+    "text": "Come with me if you want to shop."
+  }
+}
+```
+
+Fields:
+
+- `quipId`: opening quip UUID.
+- `patch.text`: optional replacement display text.
+
+### `quips.openingQuip.remove`
+
+```json
+{
+  "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0201"
+}
+```
+
+Fields:
+
+- `quipId`: opening quip UUID.
+
+## Carty Greeting Quip Payloads
+
+### `quips.cartyGreetingQuip.add`
+
+```json
+{
+  "text": "What does the fridge deny needing?"
+}
+```
+
+Fields:
+
+- `text`: display text for the new Carty greeting quip.
+
+### `quips.cartyGreetingQuip.edit`
+
+```json
+{
+  "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0202",
+  "patch": {
+    "text": "Report the pantry situation."
+  }
+}
+```
+
+Fields:
+
+- `quipId`: Carty greeting quip UUID.
+- `patch.text`: optional replacement display text.
+
+### `quips.cartyGreetingQuip.remove`
+
+```json
+{
+  "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0202"
+}
+```
+
+Fields:
+
+- `quipId`: Carty greeting quip UUID.

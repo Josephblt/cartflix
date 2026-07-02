@@ -22,7 +22,7 @@ Operation types use this shape:
 
 Rules:
 
-- `domain` is one of `catalog`, `list`, or `history`
+- `domain` is one of `catalog`, `list`, `history`, or `quips`
 - `entity` is singular and lower camel case
 - `action` is one of `add`, `edit`, or `remove`
 - compound entities use lower camel case, such as `itemAlias`
@@ -36,6 +36,8 @@ catalog.itemAlias.edit
 catalog.variantAlias.remove
 list.entry.add
 history.entry.remove
+quips.openingQuip.add
+quips.cartyGreetingQuip.edit
 ```
 
 ## Item Catalog Operations
@@ -98,6 +100,30 @@ History stores purchased entries and notable purchase metadata.
 - `history.entry.edit`
 - `history.entry.remove`
 
+## Quip Operations
+
+Quips store short display lines for Cartflix's personality layer. Quip
+operations mutate `data/quips.json`; they do not affect grocery-list behavior or
+Carty's operating rules.
+
+Quips are addressed by stable opaque UUIDs.
+
+### Opening Quip Operations
+
+Opening quips appear on Cartflix opening or login surfaces.
+
+- `quips.openingQuip.add`
+- `quips.openingQuip.edit`
+- `quips.openingQuip.remove`
+
+### Carty Greeting Quip Operations
+
+Carty greeting quips appear when the Carty chat surface opens.
+
+- `quips.cartyGreetingQuip.add`
+- `quips.cartyGreetingQuip.edit`
+- `quips.cartyGreetingQuip.remove`
+
 ## Abstraction Boundary
 
 The operation layer should not decide user intent, policy, timing, or workflow.
@@ -110,3 +136,5 @@ Examples of higher-level decisions that belong above this layer:
 - whether a bought list entry should create or update a history entry
 - whether an operation is safe, destructive, or requires confirmation
 - how multiple operations are sequenced as one user-visible action
+- whether quips should be shown randomly, rotated, or filtered by future
+  editorial metadata

@@ -124,6 +124,18 @@ Alias validation:
 - `quantity`, `price`, and `purchaseLocation` may be `null` or non-empty strings.
 - `purchasedAt` must be a timestamp string when supplied.
 
+## Quip Validation
+
+- quip add operations generate a new `quipId`.
+- quip edit and remove operations require an existing `quipId` in the matching
+  quip collection.
+- `text` must be a non-empty string after trimming.
+- `text` must not contain newlines.
+- adding or editing a quip should reject duplicate text within the same quip
+  collection after normalization.
+- opening quip operations must not target Carty greeting quips, and Carty
+  greeting quip operations must not target opening quips.
+
 ## Error Codes
 
 Validation errors should use stable machine-readable codes.
@@ -140,8 +152,10 @@ Examples:
 - `CATALOG_VARIANT_NOT_FOUND`
 - `LIST_ENTRY_NOT_FOUND`
 - `HISTORY_ENTRY_NOT_FOUND`
+- `QUIP_NOT_FOUND`
 - `ALIAS_NOT_FOUND`
 - `DUPLICATE_ALIAS`
 - `DUPLICATE_ITEM_NAME`
 - `DUPLICATE_VARIANT_NAME`
+- `DUPLICATE_QUIP_TEXT`
 - `REFERENCE_CONFLICT`
