@@ -8,7 +8,7 @@ coverage/
 
 # Runtime data
 data/*.json
-!data/*.example.json
+!data/quips.json
 data/*.db
 data/*.sqlite
 data/*.sqlite3
