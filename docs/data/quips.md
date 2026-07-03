@@ -72,7 +72,8 @@ Rules:
 - `text` must not contain newlines.
 - `text` should be short enough to fit a compact mobile surface.
 - duplicate quip text inside the same array should be avoided.
-- order is meaningful for review, but display order may be randomized by the app
+- order is meaningful for review and index-based replacement, but display order
+  may be randomized by the app
 
 ## Ownership Boundary
 
@@ -86,7 +87,9 @@ If Carty needs durable operating rules, those belong under `agent/`, not in
 
 ## Selection Behavior
 
-The app may select a quip at random or rotate through the configured list.
+The app may select a quip at random or rotate through the configured list. The
+high-level `getQuip` app operation returns a random quip for the requested
+collection.
 
 Recommended baseline:
 
@@ -94,6 +97,18 @@ Recommended baseline:
 - fall back to a small built-in default if the file is missing, invalid, or the
   relevant array is empty
 - do not write selection history into `data/quips.json`
+
+## Operation Behavior
+
+Low-level quip operations are deliberately small:
+
+- add a quip
+- get a quip by zero-based index
+- remove a quip
+
+There is no low-level edit operation for quips. If a quip should change, the
+high-level app operation replaces the quip at a specific index by reading that
+index, removing the current quip, and inserting the new quip at the same index.
 
 ## Deliberate Omissions
 

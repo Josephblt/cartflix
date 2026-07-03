@@ -21,6 +21,7 @@ Rules:
 - add operations create new UUIDs inside Cartflix
 - edit operations target an existing UUID or alias and carry a `patch`
 - remove operations target an existing UUID or alias
+- read operations return data without mutating storage
 - omitted patch fields are unchanged
 - explicit `null` clears nullable fields
 
@@ -324,29 +325,28 @@ Fields:
 
 ```json
 {
-  "text": "May the cart be with you."
+  "text": "May the cart be with you.",
+  "index": 0
 }
 ```
 
 Fields:
 
 - `text`: display text for the new opening quip.
+- `index`: optional zero-based insertion index. If omitted, the quip is
+  appended.
 
-### `quips.openingQuip.edit`
+### `quips.openingQuip.getByIndex`
 
 ```json
 {
-  "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0201",
-  "patch": {
-    "text": "Come with me if you want to shop."
-  }
+  "index": 0
 }
 ```
 
 Fields:
 
-- `quipId`: opening quip UUID.
-- `patch.text`: optional replacement display text.
+- `index`: zero-based opening quip index.
 
 ### `quips.openingQuip.remove`
 
@@ -366,29 +366,28 @@ Fields:
 
 ```json
 {
-  "text": "What does the fridge deny needing?"
+  "text": "What does the fridge deny needing?",
+  "index": 0
 }
 ```
 
 Fields:
 
 - `text`: display text for the new Carty greeting quip.
+- `index`: optional zero-based insertion index. If omitted, the quip is
+  appended.
 
-### `quips.cartyGreetingQuip.edit`
+### `quips.cartyGreetingQuip.getByIndex`
 
 ```json
 {
-  "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0202",
-  "patch": {
-    "text": "Report the pantry situation."
-  }
+  "index": 0
 }
 ```
 
 Fields:
 
-- `quipId`: Carty greeting quip UUID.
-- `patch.text`: optional replacement display text.
+- `index`: zero-based Carty greeting quip index.
 
 ### `quips.cartyGreetingQuip.remove`
 

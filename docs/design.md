@@ -48,12 +48,12 @@ separate from Carty instructions and from grocery-list operation data.
 
 ## Operation Layer
 
-Cartflix should mutate data through explicit operations rather than through
-ad-hoc file edits.
+Cartflix should change or read data through explicit operations rather than
+through ad-hoc file edits.
 
 The low-level operation set is documented in [Operations](operations.md). That
-layer defines what can change. User intent, policy, confirmation, and sequencing
-belong above it.
+layer defines explicit storage actions. User intent, policy, confirmation, and
+sequencing belong above it.
 
 Operation payload shapes are documented in
 [Operation Payloads](operation-payloads.md).

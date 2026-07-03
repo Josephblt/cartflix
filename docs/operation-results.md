@@ -5,6 +5,9 @@ This document defines the result shape for low-level operations.
 Payloads describe what Cartflix should attempt. Results describe what actually
 changed.
 
+Read operations use the same success envelope, but may return `data` instead of
+`changed` resources.
+
 ## Single Operation Response
 
 A single operation response wraps one operation result.
@@ -89,6 +92,7 @@ Fields:
 - `type`: operation type that was attempted.
 - `ids`: primary IDs created or targeted by the operation.
 - `changed`: list of changed resources.
+- `data`: optional read result for non-mutating operations.
 - `warnings`: non-fatal validation or interpretation notes.
 
 ## Changed Resource
@@ -127,7 +131,28 @@ Quip changes report the quip UUID.
 {
   "kind": "quips.cartyGreetingQuip",
   "id": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0202",
-  "action": "updated"
+  "action": "created"
+}
+```
+
+Quip reads return the selected index and quip.
+
+```json
+{
+  "ok": true,
+  "type": "quips.openingQuip.getByIndex",
+  "ids": {
+    "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0201"
+  },
+  "changed": [],
+  "data": {
+    "index": 0,
+    "quip": {
+      "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0201",
+      "text": "May the cart be with you."
+    }
+  },
+  "warnings": []
 }
 ```
 

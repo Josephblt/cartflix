@@ -60,8 +60,8 @@ addressed by normalized text within their parent scope.
 
 Quips are lightweight UI personality data. They store opening comic lines and
 Carty greeting prompts without making them part of Carty's operating rules.
-Quips use stable opaque UUIDs so they can be safely edited through the operation
-layer.
+Quips can be added, removed, read by index, randomly selected for display, and
+replaced by index through the app operation layer.
 
 ## Cartflix and Carty
 

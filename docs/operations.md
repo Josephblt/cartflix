@@ -1,8 +1,9 @@
 # Operations
 
 Cartflix should expose a small set of low-level operations. These operations
-describe what can change. A higher-level layer decides when they happen and how
-user intent maps to them.
+describe explicit storage actions: mostly mutations, plus narrow reads needed
+to support ordered workflows. A higher-level layer decides when they happen and
+how user intent maps to them.
 
 Carty, the UI, import tools, and future automations should all target this
 operation layer instead of editing storage directly.
@@ -24,9 +25,10 @@ Rules:
 
 - `domain` is one of `catalog`, `list`, `history`, or `quips`
 - `entity` is singular and lower camel case
-- `action` is one of `add`, `edit`, or `remove`
+- mutation `action` is one of `add`, `edit`, or `remove`
+- read `action` may use a specific verb such as `getByIndex`
 - compound entities use lower camel case, such as `itemAlias`
-- type names describe low-level mutations, not user intent or UI wording
+- type names describe low-level data actions, not user intent or UI wording
 
 Examples:
 
@@ -37,7 +39,7 @@ catalog.variantAlias.remove
 list.entry.add
 history.entry.remove
 quips.openingQuip.add
-quips.cartyGreetingQuip.edit
+quips.cartyGreetingQuip.getByIndex
 ```
 
 ## Item Catalog Operations
@@ -103,17 +105,23 @@ History stores purchased entries and notable purchase metadata.
 ## Quip Operations
 
 Quips store short display lines for Cartflix's personality layer. Quip
-operations mutate `data/quips.json`; they do not affect grocery-list behavior or
-Carty's operating rules.
+operations act on `data/quips.json`; they do not affect grocery-list behavior
+or Carty's operating rules.
 
-Quips are addressed by stable opaque UUIDs.
+Quips are ordered display data. They are usually selected by rotation or random
+choice, so low-level quip mutations intentionally only support adding and
+removing records. Rewording a quip is modeled as replacing the entry at an
+index, not editing the existing record.
+
+Quips are addressed by stable opaque UUIDs for removal and by zero-based index
+for ordered reads and replacement workflows.
 
 ### Opening Quip Operations
 
 Opening quips appear on Cartflix opening or login surfaces.
 
 - `quips.openingQuip.add`
-- `quips.openingQuip.edit`
+- `quips.openingQuip.getByIndex`
 - `quips.openingQuip.remove`
 
 ### Carty Greeting Quip Operations
@@ -121,13 +129,13 @@ Opening quips appear on Cartflix opening or login surfaces.
 Carty greeting quips appear when the Carty chat surface opens.
 
 - `quips.cartyGreetingQuip.add`
-- `quips.cartyGreetingQuip.edit`
+- `quips.cartyGreetingQuip.getByIndex`
 - `quips.cartyGreetingQuip.remove`
 
 ## Abstraction Boundary
 
 The operation layer should not decide user intent, policy, timing, or workflow.
-It should only validate and apply explicit mutations.
+It should only validate and apply explicit storage actions.
 
 Examples of higher-level decisions that belong above this layer:
 
@@ -138,3 +146,5 @@ Examples of higher-level decisions that belong above this layer:
 - how multiple operations are sequenced as one user-visible action
 - whether quips should be shown randomly, rotated, or filtered by future
   editorial metadata
+- whether a quip replacement should be performed by reading an index, removing
+  the old quip, and inserting the new quip at the same index
