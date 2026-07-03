@@ -8,10 +8,10 @@ how user intent maps to them.
 Carty, the UI, import tools, and future automations should all target this
 operation layer instead of editing storage directly.
 
-Payload shapes are documented in [Operation Payloads](operation-payloads.md).
-Result shapes are documented in [Operation Results](operation-results.md).
+Payload shapes are documented in [Operation Payloads](payload.md).
+Result shapes are documented in [Operation Results](results.md).
 Validation rules are documented in
-[Operation Validation](operation-validation.md).
+[Operation Validation](validation.md).
 
 ## Operation Type Names
 
