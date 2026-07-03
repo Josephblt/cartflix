@@ -31,13 +31,12 @@ data/
   auth.json     # Local users and password hashes
 ```
 
-Each data file has a matching model document:
+Core grocery and app display data files have matching model documents:
 
 - `data/items.json`: [Item catalog](data/items.md)
 - `data/list.json`: [Active list](data/list.md)
 - `data/history.json`: [Purchase history](data/history.md)
 - `data/quips.json`: [Quips](data/quips.md)
-- `data/auth.json`: [Authentication](data/auth.md)
 
 The item model is explicit: items and variants are durable catalog entities with
 stable opaque UUIDs; aliases are lightweight strings addressed by normalized
@@ -45,6 +44,10 @@ text within their parent item or variant.
 
 Quips are display data for Cartflix's personality layer. They are intentionally
 separate from Carty instructions and from grocery-list operation data.
+
+Authentication may store local records in `data/auth.json`, but it is
+documented separately because it owns credentials, sessions, and access control:
+[Authentication](authentication/README.md).
 
 ## Operation Layer
 
@@ -60,4 +63,4 @@ docs under `docs/operations/<domain>/`.
 
 App-level workflow intent is documented in [App Intent Layer](app-intents.md).
 
-Authentication is documented in [Authentication](data/auth.md).
+Authentication is documented in [Authentication](authentication/README.md).

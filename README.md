@@ -52,7 +52,6 @@ The current data and app model notes live under `docs/`:
 - [Active list](docs/data/list.md)
 - [Purchase history](docs/data/history.md)
 - [Quips](docs/data/quips.md)
-- [Authentication](docs/data/auth.md)
 
 The item model uses stable opaque UUIDs for items and variants. List entries also
 use opaque UUIDs. Item aliases and variant aliases do not have IDs; they are
@@ -62,6 +61,14 @@ Quips are lightweight UI personality data. They store opening comic lines and
 Carty greeting prompts without making them part of Carty's operating rules.
 Quips can be added, removed, read by index, randomly selected for display, and
 replaced by index through the app operation layer.
+
+## Authentication
+
+Authentication is documented separately from the grocery data model:
+[Authentication](docs/authentication/README.md). It owns login, sessions,
+password hashing, and access control. Auth may store local records under
+`data/auth.json`, but it is security infrastructure, not a grocery operation or
+Carty workflow.
 
 ## Cartflix and Carty
 
