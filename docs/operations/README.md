@@ -11,39 +11,40 @@ layer instead of editing storage directly.
 
 ```text
 operations/
-  definitions/  # operation names grouped by domain
-  payload/      # request payloads grouped by domain
-  results/      # result notes grouped by domain
-  validation/   # validation rules grouped by domain
+  catalog/
+    definitions.md
+    payload.md
+    results.md
+    validation.md
+  list/
+    definitions.md
+    payload.md
+    results.md
+    validation.md
+  history/
+    definitions.md
+    payload.md
+    results.md
+    validation.md
+  quips/
+    definitions.md
+    payload.md
+    results.md
+    validation.md
 ```
 
 ## Domains
 
-- [Catalog definitions](definitions/catalog.md)
-- [List definitions](definitions/list.md)
-- [History definitions](definitions/history.md)
-- [Quip definitions](definitions/quips.md)
-
-Payloads:
-
-- [Catalog payloads](payload/catalog.md)
-- [List payloads](payload/list.md)
-- [History payloads](payload/history.md)
-- [Quip payloads](payload/quips.md)
-
-Results:
-
-- [Catalog results](results/catalog.md)
-- [List results](results/list.md)
-- [History results](results/history.md)
-- [Quip results](results/quips.md)
-
-Validation:
-
-- [Catalog validation](validation/catalog.md)
-- [List validation](validation/list.md)
-- [History validation](validation/history.md)
-- [Quip validation](validation/quips.md)
+- Catalog: [definitions](catalog/definitions.md),
+  [payload](catalog/payload.md), [results](catalog/results.md),
+  [validation](catalog/validation.md)
+- List: [definitions](list/definitions.md), [payload](list/payload.md),
+  [results](list/results.md), [validation](list/validation.md)
+- History: [definitions](history/definitions.md),
+  [payload](history/payload.md), [results](history/results.md),
+  [validation](history/validation.md)
+- Quips: [definitions](quips/definitions.md), [payload](quips/payload.md),
+  [results](quips/results.md), [validation](quips/validation.md)
 
 ## Type Names
 
