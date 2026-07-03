@@ -52,15 +52,15 @@ Cartflix should change or read data through explicit operations rather than
 through ad-hoc file edits.
 
 The low-level operation set is documented in
-[Operations](operations/definitions.md). That layer defines explicit storage
-actions. User intent, policy, confirmation, and sequencing belong above it.
+[Operations](operations/README.md). That layer defines explicit storage actions.
+User intent, policy, confirmation, and sequencing belong above it.
 
 Operation payload shapes are documented in
-[Operation Payloads](operations/payload.md).
+[operation payload domain docs](operations/payload/).
 Operation result shapes are documented in
-[Operation Results](operations/results.md).
+[operation result domain docs](operations/results/).
 Operation validation rules are documented in
-[Operation Validation](operations/validation.md).
+[operation validation domain docs](operations/validation/).
 
 App-level workflow intent is documented in [App Intent Layer](app-intents.md).
 
