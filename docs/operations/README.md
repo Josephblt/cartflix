@@ -16,35 +16,41 @@ operations/
     payload.md
     results.md
     validation.md
+    errors.md
   list/
     actions.md
     payload.md
     results.md
     validation.md
+    errors.md
   history/
     actions.md
     payload.md
     results.md
     validation.md
+    errors.md
   quips/
     actions.md
     payload.md
     results.md
     validation.md
+    errors.md
 ```
 
 ## Domains
 
 - Catalog: [actions](catalog/actions.md),
   [payload](catalog/payload.md), [results](catalog/results.md),
-  [validation](catalog/validation.md)
+  [validation](catalog/validation.md), [errors](catalog/errors.md)
 - List: [actions](list/actions.md), [payload](list/payload.md),
-  [results](list/results.md), [validation](list/validation.md)
+  [results](list/results.md), [validation](list/validation.md),
+  [errors](list/errors.md)
 - History: [actions](history/actions.md),
   [payload](history/payload.md), [results](history/results.md),
-  [validation](history/validation.md)
+  [validation](history/validation.md), [errors](history/errors.md)
 - Quips: [actions](quips/actions.md), [payload](quips/payload.md),
-  [results](quips/results.md), [validation](quips/validation.md)
+  [results](quips/results.md), [validation](quips/validation.md),
+  [errors](quips/errors.md)
 
 ## Type Names
 
@@ -159,9 +165,10 @@ Edit operations use `patch`.
 - explicit `null` is allowed only for nullable fields.
 - unknown patch fields should be rejected.
 
-## Error Codes
+## Common Error Codes
 
-Validation errors should use stable machine-readable codes.
+Validation errors should use stable machine-readable codes. Domain-specific
+errors live under each operation domain.
 
 Examples:
 
@@ -171,15 +178,3 @@ Examples:
 - `MISSING_REQUIRED_FIELD`
 - `UNKNOWN_FIELD`
 - `EMPTY_STRING`
-- `CATALOG_ITEM_NOT_FOUND`
-- `CATALOG_VARIANT_NOT_FOUND`
-- `LIST_ENTRY_NOT_FOUND`
-- `HISTORY_ENTRY_NOT_FOUND`
-- `QUIP_NOT_FOUND`
-- `QUIP_INDEX_OUT_OF_RANGE`
-- `ALIAS_NOT_FOUND`
-- `DUPLICATE_ALIAS`
-- `DUPLICATE_ITEM_NAME`
-- `DUPLICATE_VARIANT_NAME`
-- `DUPLICATE_QUIP_TEXT`
-- `REFERENCE_CONFLICT`

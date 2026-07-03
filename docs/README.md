@@ -59,8 +59,8 @@ The low-level operation set is documented in
 [Operations](operations/README.md). That layer defines explicit storage actions.
 User intent, policy, confirmation, and sequencing belong above it.
 
-Each operation domain has its own actions, payload, results, and validation docs
-under `docs/operations/<domain>/`.
+Each operation domain has its own actions, payload, results, validation, and
+errors docs under `docs/operations/<domain>/`.
 
 App-level workflow intent is documented in [App Intent Layer](app-intents.md).
 
