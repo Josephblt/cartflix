@@ -4,7 +4,7 @@ const path = require("node:path");
 const DEFAULT_OPENING_QUIPS = [
   {
     quipId: "default-opening-quip",
-    text: "Groceries. But with consequences."
+    text: "The first rule of Cart Club is: You do not talk about Cart Club."
   }
 ];
 
