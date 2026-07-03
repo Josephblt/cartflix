@@ -5,6 +5,9 @@ Cartflix uses simple local username/password authentication.
 The goal is to protect family-facing access without turning the app into an
 identity platform.
 
+Auth is security infrastructure. It is separate from grocery operations and from
+Carty workflow behavior.
+
 ## Decisions
 
 - username/password login
@@ -16,47 +19,10 @@ identity platform.
 - session token stored in an HTTP-only cookie
 - password change supported
 
-## Auth Data File
+The `data/auth.json` file shape is documented in
+[Authentication data](../data/authentication.md).
 
-File: `data/auth.json`
-
-```json
-{
-  "type": "users",
-  "algorithm": "scrypt",
-  "params": {
-    "N": 16384,
-    "r": 8,
-    "p": 1,
-    "keyLength": 64
-  },
-  "users": [
-    {
-      "id": "018f6a3d-7b8e-7a11-9f50-2c2c2edc1001",
-      "username": "wagner",
-      "displayName": "Wagner",
-      "salt": "base64url",
-      "hash": "base64url",
-      "createdAt": "2026-07-01T12:00:00Z",
-      "updatedAt": "2026-07-01T12:00:00Z"
-    }
-  ]
-}
-```
-
-Fields:
-
-- `type`: auth file type. Initial value is `users`.
-- `algorithm`: password hashing algorithm. Initial value is `scrypt`.
-- `params`: hashing parameters.
-- `users`: configured users.
-- `users[].id`: stable opaque user UUID.
-- `users[].username`: login name.
-- `users[].displayName`: display name.
-- `users[].salt`: per-user salt.
-- `users[].hash`: password hash.
-- `users[].createdAt`: user creation timestamp.
-- `users[].updatedAt`: last auth-record update timestamp.
+Auth endpoints are documented in [Authentication endpoints](endpoints.md).
 
 ## Password Hashing
 
@@ -90,77 +56,6 @@ Cookie rules:
 
 Initial implementation can keep sessions in memory. Restarting the app clears
 active sessions.
-
-## Auth Routes
-
-Initial auth routes:
-
-```text
-POST /api/auth/login
-GET  /api/auth/status
-POST /api/auth/logout
-POST /api/auth/change-password
-```
-
-### `POST /api/auth/login`
-
-Input:
-
-```json
-{
-  "username": "wagner",
-  "password": "plaintext submitted over HTTPS"
-}
-```
-
-Behavior:
-
-- find user by `username`
-- hash submitted password with stored salt and params
-- compare using timing-safe comparison
-- create session on success
-- return user identity without secret fields
-
-### `GET /api/auth/status`
-
-Returns whether the current request has a valid session.
-
-```json
-{
-  "ok": true,
-  "authenticated": true,
-  "user": {
-    "id": "018f6a3d-7b8e-7a11-9f50-2c2c2edc1001",
-    "username": "wagner",
-    "displayName": "Wagner"
-  }
-}
-```
-
-### `POST /api/auth/logout`
-
-Deletes the current session and clears the session cookie.
-
-### `POST /api/auth/change-password`
-
-Input:
-
-```json
-{
-  "currentPassword": "current plaintext submitted over HTTPS",
-  "newPassword": "new plaintext submitted over HTTPS"
-}
-```
-
-Behavior:
-
-- requires an authenticated session
-- verifies `currentPassword`
-- generates a new salt
-- hashes `newPassword`
-- updates only the current user's auth record
-- updates `updatedAt`
-- does not store plaintext
 
 ## Access Control
 

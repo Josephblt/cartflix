@@ -52,6 +52,7 @@ The current data and app model notes live under `docs/`:
 - [Active list](docs/data/list.md)
 - [Purchase history](docs/data/history.md)
 - [Quips](docs/data/quips.md)
+- [Authentication data](docs/data/authentication.md)
 
 The item model uses stable opaque UUIDs for items and variants. List entries also
 use opaque UUIDs. Item aliases and variant aliases do not have IDs; they are
@@ -66,9 +67,10 @@ replaced by index through the app operation layer.
 
 Authentication is documented separately from the grocery data model:
 [Authentication](docs/authentication/README.md). It owns login, sessions,
-password hashing, and access control. Auth may store local records under
-`data/auth.json`, but it is security infrastructure, not a grocery operation or
-Carty workflow.
+password hashing, and access control. Auth endpoints are documented separately
+in [Authentication endpoints](docs/authentication/endpoints.md). The
+`data/auth.json` file shape remains documented with the other data files because
+it is still a local runtime file.
 
 ## Cartflix and Carty
 

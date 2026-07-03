@@ -31,12 +31,13 @@ data/
   auth.json     # Local users and password hashes
 ```
 
-Core grocery and app display data files have matching model documents:
+Runtime data files have matching model documents:
 
 - `data/items.json`: [Item catalog](data/items.md)
 - `data/list.json`: [Active list](data/list.md)
 - `data/history.json`: [Purchase history](data/history.md)
 - `data/quips.json`: [Quips](data/quips.md)
+- `data/auth.json`: [Authentication data](data/authentication.md)
 
 The item model is explicit: items and variants are durable catalog entities with
 stable opaque UUIDs; aliases are lightweight strings addressed by normalized
@@ -45,9 +46,9 @@ text within their parent item or variant.
 Quips are display data for Cartflix's personality layer. They are intentionally
 separate from Carty instructions and from grocery-list operation data.
 
-Authentication may store local records in `data/auth.json`, but it is
-documented separately because it owns credentials, sessions, and access control:
-[Authentication](authentication/README.md).
+The authentication data file only documents the persisted `data/auth.json`
+shape. Authentication behavior is documented separately because it owns login,
+sessions, and access control: [Authentication](authentication/README.md).
 
 ## Operation Layer
 
@@ -58,8 +59,8 @@ The low-level operation set is documented in
 [Operations](operations/README.md). That layer defines explicit storage actions.
 User intent, policy, confirmation, and sequencing belong above it.
 
-Each operation domain has its own definitions, payload, results, and validation
-docs under `docs/operations/<domain>/`.
+Each operation domain has its own actions, payload, results, and validation docs
+under `docs/operations/<domain>/`.
 
 App-level workflow intent is documented in [App Intent Layer](app-intents.md).
 
