@@ -24,6 +24,8 @@ The `data/auth.json` file shape is documented in
 
 Auth endpoints are documented in [Authentication endpoints](endpoints.md).
 
+Auth error handling is documented in [Authentication errors](errors.md).
+
 ## Password Hashing
 
 Cartflix hashes passwords with Node's `crypto.scrypt`.

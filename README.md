@@ -68,7 +68,8 @@ replaced by index through the app operation layer.
 Authentication is documented separately from the grocery data model:
 [Authentication](docs/authentication/README.md). It owns login, sessions,
 password hashing, and access control. Auth endpoints are documented separately
-in [Authentication endpoints](docs/authentication/endpoints.md). The
+in [Authentication endpoints](docs/authentication/endpoints.md), with failures
+covered in [Authentication errors](docs/authentication/errors.md). The
 `data/auth.json` file shape remains documented with the other data files because
 it is still a local runtime file.
 

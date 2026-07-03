@@ -9,6 +9,8 @@ POST /api/auth/logout
 POST /api/auth/change-password
 ```
 
+Auth errors use the shared rules in [Authentication errors](errors.md).
+
 ## `POST /api/auth/login`
 
 Input:
@@ -27,6 +29,8 @@ Behavior:
 - compare using timing-safe comparison
 - create session on success
 - return user identity without secret fields
+- return the same `INVALID_CREDENTIALS` error for unknown usernames and wrong
+  passwords
 
 ## `GET /api/auth/status`
 
@@ -68,3 +72,4 @@ Behavior:
 - updates only the current user's auth record
 - updates `updatedAt`
 - does not store plaintext
+- returns `CURRENT_PASSWORD_INVALID` when the current password is wrong
