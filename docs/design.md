@@ -37,7 +37,7 @@ Each data file has a matching model document:
 - `data/list.json`: [Active list](data/list.md)
 - `data/history.json`: [Purchase history](data/history.md)
 - `data/quips.json`: [Quips](data/quips.md)
-- `data/auth.json`: [Authentication](auth.md)
+- `data/auth.json`: [Authentication](data/auth.md)
 
 The item model is explicit: items and variants are durable catalog entities with
 stable opaque UUIDs; aliases are lightweight strings addressed by normalized
@@ -64,4 +64,4 @@ Operation validation rules are documented in
 
 App-level workflow intent is documented in [App Intent Layer](app-intents.md).
 
-Authentication is documented in [Authentication](auth.md).
+Authentication is documented in [Authentication](data/auth.md).

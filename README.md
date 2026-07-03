@@ -52,7 +52,7 @@ The current data and app model notes live under `docs/`:
 - [Active list](docs/data/list.md)
 - [Purchase history](docs/data/history.md)
 - [Quips](docs/data/quips.md)
-- [Authentication](docs/auth.md)
+- [Authentication](docs/data/auth.md)
 
 The item model uses stable opaque UUIDs for items and variants. List entries also
 use opaque UUIDs. Item aliases and variant aliases do not have IDs; they are
