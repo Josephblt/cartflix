@@ -12,22 +12,22 @@ layer instead of editing storage directly.
 ```text
 operations/
   catalog/
-    definitions.md
+    actions.md
     payload.md
     results.md
     validation.md
   list/
-    definitions.md
+    actions.md
     payload.md
     results.md
     validation.md
   history/
-    definitions.md
+    actions.md
     payload.md
     results.md
     validation.md
   quips/
-    definitions.md
+    actions.md
     payload.md
     results.md
     validation.md
@@ -35,15 +35,15 @@ operations/
 
 ## Domains
 
-- Catalog: [definitions](catalog/definitions.md),
+- Catalog: [actions](catalog/actions.md),
   [payload](catalog/payload.md), [results](catalog/results.md),
   [validation](catalog/validation.md)
-- List: [definitions](list/definitions.md), [payload](list/payload.md),
+- List: [actions](list/actions.md), [payload](list/payload.md),
   [results](list/results.md), [validation](list/validation.md)
-- History: [definitions](history/definitions.md),
+- History: [actions](history/actions.md),
   [payload](history/payload.md), [results](history/results.md),
   [validation](history/validation.md)
-- Quips: [definitions](quips/definitions.md), [payload](quips/payload.md),
+- Quips: [actions](quips/actions.md), [payload](quips/payload.md),
   [results](quips/results.md), [validation](quips/validation.md)
 
 ## Type Names
