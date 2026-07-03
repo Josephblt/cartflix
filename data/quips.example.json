@@ -1,0 +1,19 @@
+{
+  "type": "cartflixQuips",
+  "version": 1,
+  "openingQuips": [
+    {
+      "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0201",
+      "text": "Groceries. But with consequences."
+    },
+    {
+      "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0202",
+      "text": "May the cart be with you."
+    },
+    {
+      "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0203",
+      "text": "Cartflix: because I'll remember was a lie."
+    }
+  ],
+  "cartyGreetingQuips": []
+}

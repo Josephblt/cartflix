@@ -13,6 +13,7 @@ function createConfig(env = process.env) {
     host: env.HOST || "127.0.0.1",
     port: Number(env.PORT || 18830),
     basePath: normalizeBasePath(env.BASE_PATH),
+    dataDir: env.CARTFLIX_DATA_DIR || path.join(appDir, "..", "data"),
     publicDir: env.CARTFLIX_PUBLIC_DIR || path.join(appDir, "public")
   };
 }
