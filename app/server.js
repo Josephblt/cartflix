@@ -1,4 +1,5 @@
 const http = require("node:http");
+const { ensureAuthFile } = require("./lib/auth");
 const { createConfig } = require("./lib/config");
 const { ensureQuipFile } = require("./lib/quips");
 const { createRouter } = require("./lib/router");
@@ -8,6 +9,7 @@ const server = http.createServer(createRouter(config));
 const displayPath = config.basePath || "/";
 
 async function main() {
+  await ensureAuthFile(config);
   await ensureQuipFile(config);
 
   server.listen(config.port, config.host, () => {

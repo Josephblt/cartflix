@@ -15,6 +15,12 @@ function createConfig(env = process.env) {
     host: env.HOST || "127.0.0.1",
     port: Number(env.PORT || 18830),
     basePath: normalizeBasePath(env.BASE_PATH),
+    cookiePath: normalizeBasePath(env.COOKIE_PATH || env.BASE_PATH) || "/",
+    cookieSecure: env.CARTFLIX_COOKIE_SECURE === "true"
+      ? true
+      : env.CARTFLIX_COOKIE_SECURE === "false"
+        ? false
+        : null,
     dataDir: env.CARTFLIX_DATA_DIR || path.join(dataHome, "cartflix"),
     publicDir: env.CARTFLIX_PUBLIC_DIR || path.join(appDir, "public")
   };

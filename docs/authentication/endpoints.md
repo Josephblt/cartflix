@@ -3,6 +3,7 @@
 Initial auth routes:
 
 ```text
+POST /api/auth/setup
 POST /api/auth/login
 GET  /api/auth/status
 POST /api/auth/logout
@@ -10,6 +11,27 @@ POST /api/auth/change-password
 ```
 
 Auth errors use the shared rules in [Authentication errors](errors.md).
+
+## `POST /api/auth/setup`
+
+Input:
+
+```json
+{
+  "username": "wagner",
+  "displayName": "Cart User",
+  "password": "plaintext submitted over HTTPS"
+}
+```
+
+Behavior:
+
+- only succeeds while the auth file has zero users
+- validates username and password
+- hashes the password with `scrypt`
+- creates the first local user
+- creates a session on success
+- returns `409 Conflict` after setup is complete
 
 ## `POST /api/auth/login`
 
