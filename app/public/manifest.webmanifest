@@ -1,8 +1,9 @@
 {
   "name": "Cartflix",
   "short_name": "Cartflix",
-  "start_url": ".",
-  "scope": ".",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#f7f6f2",
   "theme_color": "#245b44",
