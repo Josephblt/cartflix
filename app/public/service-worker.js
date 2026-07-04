@@ -1,4 +1,4 @@
-const CACHE_NAME = "cartflix-shell-v4";
+const CACHE_NAME = "cartflix-shell-v8";
 const APP_SHELL = [
   "/",
   "/manifest.webmanifest",
@@ -18,6 +18,7 @@ const APP_SHELL = [
   "/utils/http.js",
   "/utils/install-prompt.js",
   "/images/c_logo.png",
+  "/images/cartflix-title.png",
   "/images/icons/cartflix-192.png",
   "/images/icons/cartflix-512.png"
 ];
@@ -35,6 +36,10 @@ self.addEventListener("activate", (event) => {
       keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
     )).then(() => clients.claim())
   );
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data?.type === "SKIP_WAITING") self.skipWaiting();
 });
 
 self.addEventListener("fetch", (event) => {

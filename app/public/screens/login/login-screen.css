@@ -35,7 +35,7 @@
   background: var(--button-bg);
   color: var(--button-text);
   padding: 0 16px;
-  font-weight: 750;
+  font-weight: 400;
 }
 
 .auth-submit:disabled {
