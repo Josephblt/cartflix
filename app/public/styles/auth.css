@@ -1,0 +1,49 @@
+.auth-form {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.auth-input,
+.auth-submit {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 8px;
+  font: inherit;
+  letter-spacing: 0;
+}
+
+.auth-input {
+  border: 1px solid var(--control-border);
+  background: var(--control-bg);
+  color: var(--text);
+  padding: 0 13px;
+}
+
+.auth-input:focus {
+  border-color: var(--control-focus);
+  outline: 2px solid color-mix(in srgb, var(--control-focus) 28%, transparent);
+  outline-offset: 1px;
+}
+
+.auth-submit {
+  border: 0;
+  background: var(--button-bg);
+  color: var(--button-text);
+  padding: 0 16px;
+  font-weight: 750;
+}
+
+.auth-submit:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.auth-message {
+  min-height: 20px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: center;
+}

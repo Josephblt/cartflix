@@ -1,0 +1,26 @@
+.initial-screen {
+  position: relative;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.screen-group {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  max-width: calc(100vw - 48px);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.brand-group {
+  gap: 14px;
+  width: min(100%, 360px);
+}
+
+.login-group {
+  width: min(100%, 272px);
+}
