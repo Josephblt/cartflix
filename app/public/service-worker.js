@@ -1,4 +1,4 @@
-const CACHE_NAME = "cartflix-shell-v2";
+const CACHE_NAME = "cartflix-shell-v3";
 const APP_SHELL = [
   "/",
   "/manifest.webmanifest",
@@ -7,6 +7,7 @@ const APP_SHELL = [
   "/screens/shared/tokens.css",
   "/screens/shared/base.css",
   "/screens/shared/screen.css",
+  "/screens/shared/install-prompt.css",
   "/screens/opening/opening-screen.css",
   "/screens/opening/opening-screen.html",
   "/screens/opening/opening-screen.js",
@@ -15,6 +16,7 @@ const APP_SHELL = [
   "/screens/login/login-screen.js",
   "/utils/html.js",
   "/utils/http.js",
+  "/utils/install-prompt.js",
   "/images/c_logo.png",
   "/images/icons/cartflix-192.png",
   "/images/icons/cartflix-512.png"

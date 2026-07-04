@@ -1,5 +1,6 @@
 @import "./shared/tokens.css";
 @import "./shared/base.css";
 @import "./shared/screen.css";
+@import "./shared/install-prompt.css";
 @import "./opening/opening-screen.css";
 @import "./login/login-screen.css";
