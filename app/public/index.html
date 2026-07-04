@@ -16,22 +16,19 @@
   </head>
   <body>
     <main class="initial-screen" aria-labelledby="app-title">
-      <div class="brand-group">
+      <section class="screen-group brand-group" data-opening-view>
         <img class="brand-mark" src="brand/cartflix-c-mark.png" alt="" width="180" height="180">
         <h1 id="app-title">Cartflix</h1>
         <p class="opening-quip" data-opening-quip>The first rule of Cart Club is: You do not talk about Cart Club.</p>
-        <form class="auth-form" data-auth-form hidden>
+      </section>
+      <section class="screen-group login-group" data-login-view hidden>
+        <form class="auth-form" data-auth-form>
           <input class="auth-input" data-auth-username name="username" autocomplete="username" placeholder="Username" required>
-          <input class="auth-input" data-auth-display-name name="displayName" autocomplete="name" placeholder="Display name" hidden>
           <input class="auth-input" data-auth-password name="password" autocomplete="current-password" placeholder="Password" type="password" required>
-          <button class="auth-submit" data-auth-submit type="submit">Sign in</button>
-          <p class="auth-message" data-auth-message aria-live="polite"></p>
+          <button class="auth-submit" data-auth-submit type="submit">Login</button>
+          <p class="auth-message" data-auth-message aria-live="polite" hidden></p>
         </form>
-        <div class="auth-session" data-auth-session hidden>
-          <p class="auth-message">Signed in as <span data-auth-user></span></p>
-          <button class="auth-submit" data-auth-logout type="button">Sign out</button>
-        </div>
-      </div>
+      </section>
     </main>
   </body>
 </html>
