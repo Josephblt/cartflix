@@ -1,5 +1,5 @@
-import { initLoginScreen } from "./screens/login/login-screen.js";
-import { initOpeningScreen } from "./screens/opening/opening-screen.js";
+import { initLoginScreen } from "./login/login-screen.js";
+import { initOpeningScreen } from "./opening/opening-screen.js";
 
 const OPENING_DURATION_MS = 1600;
 
