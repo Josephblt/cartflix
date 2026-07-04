@@ -8,6 +8,22 @@ const selectors = {
   username: "[data-auth-username]"
 };
 
+export function createLoginScreen() {
+  const section = document.createElement("section");
+  section.className = "screen-group login-group";
+  section.dataset.loginView = "";
+  section.hidden = true;
+  section.innerHTML = `
+    <form class="auth-form" data-auth-form>
+      <input class="auth-input" data-auth-username name="username" autocomplete="username" placeholder="Username" required>
+      <input class="auth-input" data-auth-password name="password" autocomplete="current-password" placeholder="Password" type="password" required>
+      <button class="auth-submit" data-auth-submit type="submit">Login</button>
+      <p class="auth-message" data-auth-message aria-live="polite" hidden></p>
+    </form>
+  `;
+  return section;
+}
+
 function element(name) {
   return document.querySelector(selectors[name]);
 }
