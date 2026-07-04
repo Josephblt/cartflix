@@ -1,4 +1,4 @@
-const CACHE_NAME = "cartflix-shell-v3";
+const CACHE_NAME = "cartflix-shell-v4";
 const APP_SHELL = [
   "/",
   "/manifest.webmanifest",
@@ -54,6 +54,10 @@ self.addEventListener("fetch", (event) => {
   }
 
   event.respondWith(
-    caches.match(request).then((cached) => cached || fetch(request))
+    fetch(request).then((response) => {
+      const copy = response.clone();
+      caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+      return response;
+    }).catch(() => caches.match(request))
   );
 });
