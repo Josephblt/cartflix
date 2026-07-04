@@ -1,4 +1,4 @@
-import { requestJson } from "./http.js";
+import { requestJson } from "../../shared/http.js";
 
 async function loadOpeningQuip() {
   const target = document.querySelector("[data-opening-quip]");

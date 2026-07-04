@@ -15,12 +15,3 @@
   transform: translate(-50%, -50%);
   text-align: center;
 }
-
-.brand-group {
-  gap: 14px;
-  width: min(100%, 360px);
-}
-
-.login-group {
-  width: min(100%, 272px);
-}

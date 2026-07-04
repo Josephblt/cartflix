@@ -1,5 +1,5 @@
 @import "styles/tokens.css";
 @import "styles/base.css";
 @import "styles/screen.css";
-@import "styles/brand.css";
-@import "styles/auth.css";
+@import "screens/opening/opening-screen.css";
+@import "screens/login/login-screen.css";

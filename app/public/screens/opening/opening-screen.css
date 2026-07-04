@@ -1,3 +1,8 @@
+.brand-group {
+  gap: 14px;
+  width: min(100%, 360px);
+}
+
 .brand-mark {
   width: clamp(132px, 34vw, 188px);
   height: auto;

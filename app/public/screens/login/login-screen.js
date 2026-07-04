@@ -1,4 +1,4 @@
-import { requestJson } from "./http.js";
+import { requestJson } from "../../shared/http.js";
 
 const selectors = {
   form: "[data-auth-form]",

@@ -1,3 +1,7 @@
+.login-group {
+  width: min(100%, 272px);
+}
+
 .auth-form {
   display: grid;
   gap: 10px;
