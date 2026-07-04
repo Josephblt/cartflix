@@ -2,7 +2,7 @@ const http = require("node:http");
 const { ensureAuthFile } = require("./lib/auth");
 const { createConfig } = require("./lib/config");
 const { ensureQuipFile } = require("./lib/quips");
-const { createRouter } = require("./lib/router");
+const { createRouter } = require("./lib/routes/router");
 
 const config = createConfig();
 const server = http.createServer(createRouter(config));
