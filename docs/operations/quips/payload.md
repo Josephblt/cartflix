@@ -4,7 +4,7 @@
 
 ```json
 {
-  "text": "May the cart be with you.",
+  "text": "The first rule of Cart Club is: You do not talk about Cart Club.",
   "index": 0
 }
 ```

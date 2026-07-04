@@ -17,7 +17,7 @@ rules.
   "openingQuips": [
     {
       "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0201",
-      "text": "May the cart be with you."
+      "text": "The first rule of Cart Club is: You do not talk about Cart Club."
     }
   ],
   "cartyGreetingQuips": [
@@ -56,7 +56,7 @@ A quip is a short display line with a stable opaque UUID.
 ```json
 {
   "quipId": "018f6a3d-7b8e-7a11-9f50-2c2c2edc0201",
-  "text": "May the cart be with you."
+  "text": "The first rule of Cart Club is: You do not talk about Cart Club."
 }
 ```
 
