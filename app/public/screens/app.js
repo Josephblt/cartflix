@@ -4,8 +4,15 @@ import { createOpeningScreen, initOpeningScreen } from "./opening/opening-screen
 const OPENING_DURATION_MS = 1600;
 const appRoot = document.querySelector("[data-app-root]");
 
-if (appRoot) {
-  appRoot.append(createOpeningScreen(), createLoginScreen());
+async function initApp() {
+  if (!appRoot) return;
+
+  const [openingScreen, loginScreen] = await Promise.all([
+    createOpeningScreen(),
+    createLoginScreen()
+  ]);
+
+  appRoot.append(openingScreen, loginScreen);
 
   initLoginScreen();
   initOpeningScreen({
@@ -15,3 +22,5 @@ if (appRoot) {
     }
   });
 }
+
+initApp();
