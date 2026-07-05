@@ -15,7 +15,8 @@
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
 }
 
-.ios-install-notice {
+.ios-install-notice,
+.android-install-notice {
   position: fixed;
   top: max(10px, env(safe-area-inset-top));
   left: 50%;
@@ -34,21 +35,24 @@
   backdrop-filter: blur(16px);
 }
 
-.ios-install-notice p {
+.ios-install-notice p,
+.android-install-notice p {
   margin: 0;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.35;
 }
 
-.ios-install-notice strong {
+.ios-install-notice strong,
+.android-install-notice strong {
   display: block;
   color: var(--text);
   font-size: 15px;
   font-weight: 400;
 }
 
-.ios-install-dismiss {
+.ios-install-dismiss,
+.manual-install-dismiss {
   width: 40px;
   min-height: 40px;
   border: 0;

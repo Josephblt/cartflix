@@ -1,4 +1,4 @@
-const CACHE_NAME = "cartflix-shell-v18";
+const CACHE_NAME = "cartflix-shell-v19";
 const APP_SHELL = [
   "/",
   "/manifest.webmanifest",
