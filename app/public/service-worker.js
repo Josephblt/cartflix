@@ -1,4 +1,4 @@
-const CACHE_NAME = "cartflix-shell-v20";
+const CACHE_NAME = "cartflix-shell-v21";
 const APP_SHELL = [
   "/",
   "/?source=pwa",
