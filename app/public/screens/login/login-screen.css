@@ -1,5 +1,16 @@
 .login-group {
   width: min(100%, 272px);
+  gap: 18px;
+}
+
+.auth-title {
+  margin: 0;
+  color: #e50914;
+  font-size: clamp(44px, 15vw, 64px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .auth-form {
