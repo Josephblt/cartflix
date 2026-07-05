@@ -103,8 +103,8 @@ function validateDisplayName(displayName, username) {
 
 function validatePassword(password) {
   const value = String(password || "");
-  if (value.length < 8) {
-    throw Object.assign(new Error("Password must be at least 8 characters."), { status: 400 });
+  if (value.length < 6) {
+    throw Object.assign(new Error("Password must be at least 6 characters."), { status: 400 });
   }
   if (/[\r\n]/.test(value)) {
     throw Object.assign(new Error("Password cannot contain newlines."), { status: 400 });
