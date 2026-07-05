@@ -1,5 +1,7 @@
 import { createLoginScreen, initLoginScreen } from "./login/login-screen.js";
 import { createOpeningScreen, initOpeningScreen } from "./opening/opening-screen.js";
+import { createWelcomeScreen, setWelcomeUser } from "./welcome/welcome-screen.js";
+import { requestJson } from "../utils/http.js";
 import { initInstallPrompt } from "../utils/install-prompt.js";
 import { registerServiceWorker } from "../utils/service-worker.js";
 
@@ -12,20 +14,56 @@ initInstallPrompt();
 async function initApp() {
   if (!appRoot) return;
 
-  const [openingScreen, loginScreen] = await Promise.all([
+  const [openingScreen, loginScreen, welcomeScreen, authState] = await Promise.all([
     createOpeningScreen(),
-    createLoginScreen()
+    createLoginScreen(),
+    createWelcomeScreen(),
+    currentAuthState()
   ]);
 
-  appRoot.append(openingScreen, loginScreen);
+  appRoot.append(openingScreen, loginScreen, welcomeScreen);
 
   initLoginScreen();
+  appRoot.addEventListener("cartflix:login", (event) => {
+    showWelcome(event.detail?.user);
+  });
+
   initOpeningScreen({
     durationMs: OPENING_DURATION_MS,
     onComplete: () => {
-      document.querySelector("[data-auth-username]")?.focus();
+      if (authState?.authenticated) {
+        showWelcome(authState.user);
+      } else {
+        showLogin();
+      }
     }
   });
 }
 
 initApp();
+
+async function currentAuthState() {
+  try {
+    return await requestJson("api/auth/status");
+  } catch {
+    return { authenticated: false, user: null };
+  }
+}
+
+function showLogin() {
+  const loginView = document.querySelector("[data-login-view]");
+  const welcomeView = document.querySelector("[data-welcome-view]");
+
+  if (welcomeView) welcomeView.hidden = true;
+  if (loginView) loginView.hidden = false;
+  document.querySelector("[data-auth-username]")?.focus();
+}
+
+function showWelcome(user) {
+  const loginView = document.querySelector("[data-login-view]");
+  const welcomeView = document.querySelector("[data-welcome-view]");
+
+  setWelcomeUser(user);
+  if (loginView) loginView.hidden = true;
+  if (welcomeView) welcomeView.hidden = false;
+}

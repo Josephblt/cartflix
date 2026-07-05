@@ -1,4 +1,4 @@
-const CACHE_NAME = "cartflix-shell-v11";
+const CACHE_NAME = "cartflix-shell-v12";
 const APP_SHELL = [
   "/",
   "/manifest.webmanifest",
@@ -14,6 +14,9 @@ const APP_SHELL = [
   "/screens/login/login-screen.css",
   "/screens/login/login-screen.html",
   "/screens/login/login-screen.js",
+  "/screens/welcome/welcome-screen.css",
+  "/screens/welcome/welcome-screen.html",
+  "/screens/welcome/welcome-screen.js",
   "/utils/html.js",
   "/utils/http.js",
   "/utils/install-prompt.js",

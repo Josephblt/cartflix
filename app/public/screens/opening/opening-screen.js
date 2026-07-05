@@ -18,19 +18,17 @@ async function loadOpeningQuip() {
   }
 }
 
-function showLoginScreen() {
+function hideOpeningScreen() {
   const openingView = document.querySelector("[data-opening-view]");
-  const loginView = document.querySelector("[data-login-view]");
 
   if (openingView) openingView.hidden = true;
-  if (loginView) loginView.hidden = false;
 }
 
 export function initOpeningScreen({ durationMs, onComplete }) {
   loadOpeningQuip();
 
   window.setTimeout(() => {
-    showLoginScreen();
+    hideOpeningScreen();
     onComplete?.();
   }, durationMs);
 }

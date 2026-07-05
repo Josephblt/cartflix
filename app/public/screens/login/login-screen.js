@@ -40,7 +40,7 @@ async function submitLogin(event) {
   setMessage("");
 
   try {
-    await requestJson("api/auth/login", {
+    const result = await requestJson("api/auth/login", {
       method: "POST",
       body: JSON.stringify({
         username: username?.value || "",
@@ -48,6 +48,10 @@ async function submitLogin(event) {
       })
     });
     if (password) password.value = "";
+    event.currentTarget.dispatchEvent(new CustomEvent("cartflix:login", {
+      bubbles: true,
+      detail: { user: result.user }
+    }));
   } catch (error) {
     setMessage(error.message);
   } finally {
