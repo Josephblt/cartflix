@@ -18,7 +18,7 @@
 .opening-quip {
   max-width: 30ch;
   margin: 2px 0 0;
-  font-size: 16px;
+  font-size: clamp(19px, 5vw, 24px);
   line-height: 1.4;
   letter-spacing: 0;
   text-wrap: balance;
