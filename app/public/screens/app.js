@@ -2,14 +2,12 @@ import { createLoginScreen, initLoginScreen } from "./login/login-screen.js";
 import { createOpeningScreen, initOpeningScreen } from "./opening/opening-screen.js";
 import { createWelcomeScreen, setWelcomeUser } from "./welcome/welcome-screen.js";
 import { requestJson } from "../utils/http.js";
-import { initInstallPrompt } from "../utils/install-prompt.js";
 import { registerServiceWorker } from "../utils/service-worker.js";
 
 const OPENING_DURATION_MS = 1600;
 const appRoot = document.querySelector("[data-app-root]");
 
 registerServiceWorker();
-initInstallPrompt();
 
 async function initApp() {
   if (!appRoot) return;

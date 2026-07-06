@@ -1,4 +1,4 @@
-const CACHE_NAME = "cartflix-shell-v21";
+const CACHE_NAME = "cartflix-shell-v22";
 const APP_SHELL = [
   "/",
   "/?source=pwa",
@@ -8,7 +8,6 @@ const APP_SHELL = [
   "/screens/shared/tokens.css",
   "/screens/shared/base.css",
   "/screens/shared/screen.css",
-  "/screens/shared/install-prompt.css",
   "/screens/opening/opening-screen.css",
   "/screens/opening/opening-screen.html",
   "/screens/opening/opening-screen.js",
@@ -20,7 +19,6 @@ const APP_SHELL = [
   "/screens/welcome/welcome-screen.js",
   "/utils/html.js",
   "/utils/http.js",
-  "/utils/install-prompt.js",
   "/utils/service-worker.js",
   "/images/c_logo.png",
   "/images/cartflix-title.png",
