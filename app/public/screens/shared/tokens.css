@@ -8,6 +8,9 @@
   --button-bg: #171713;
   --button-text: #ffffff;
   --muted: rgba(23, 23, 19, 0.68);
+  --font-size-small: clamp(20px, 5.5vw, 26px);
+  --font-size-normal: clamp(28px, 7.5vw, 36px);
+  --font-size-large: clamp(44px, 13vw, 64px);
   font-family: "Bebas Neue", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 

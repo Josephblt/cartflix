@@ -1,11 +1,12 @@
 .brand-group {
-  gap: 14px;
-  width: min(100%, 360px);
+  gap: 20px;
+  width: min(100%, 380px);
 }
 
 .brand-mark {
-  width: clamp(132px, 34vw, 188px);
+  width: clamp(128px, 32vw, 176px);
   height: auto;
+  margin-bottom: 4px;
 }
 
 .brand-title {
@@ -17,8 +18,8 @@
 
 .opening-quip {
   max-width: 30ch;
-  margin: 2px 0 0;
-  font-size: clamp(24px, 7.5vw, 34px);
+  margin: 4px 0 0;
+  font-size: var(--font-size-small);
   line-height: 1.4;
   letter-spacing: 0;
   text-wrap: balance;
