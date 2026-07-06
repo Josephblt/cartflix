@@ -4,8 +4,8 @@
 }
 
 .brand-mark {
-  width: clamp(128px, 32vw, 176px);
-  height: auto;
+  width: auto;
+  height: clamp(128px, 32vw, 176px);
   margin-bottom: 4px;
 }
 

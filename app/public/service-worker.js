@@ -1,4 +1,4 @@
-const CACHE_NAME = "cartflix-shell-v23";
+const CACHE_NAME = "cartflix-shell-v24";
 const APP_SHELL = [
   "/",
   "/?source=pwa",
@@ -20,6 +20,7 @@ const APP_SHELL = [
   "/utils/html.js",
   "/utils/http.js",
   "/utils/service-worker.js",
+  "/images/cartflix-logo.svg",
   "/images/c_logo.png",
   "/images/cartflix-title.png",
   "/images/icons/cartflix-192.png",
