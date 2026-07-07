@@ -5,7 +5,7 @@ Cartflix; they do not describe grocery data mutations.
 
 ## Error Shape
 
-Auth endpoints should return a stable error envelope.
+Target error shape:
 
 ```json
 {
@@ -27,12 +27,25 @@ Fields:
 Auth errors must never include password values, password hashes, salts, session
 tokens, or stack traces.
 
+Current implementation note: server route errors currently return a simpler
+shape:
+
+```json
+{
+  "ok": false,
+  "error": "Invalid username or password."
+}
+```
+
+The stable coded envelope above is still the intended shape for the next auth
+hardening pass.
+
 ## Status Codes
 
 - `400 Bad Request`: malformed request body or missing required fields.
 - `401 Unauthorized`: authentication is missing, expired, or invalid.
-- `403 Forbidden`: authenticated user is not allowed to perform the action.
-  Initial Cartflix has no roles, so this should be rare.
+- `403 Forbidden`: authenticated user or request mode is not allowed to perform
+  the action.
 - `429 Too Many Requests`: login or password-change cooldown, if rate limiting
   is added later.
 - `500 Internal Server Error`: unexpected server failure. Response must stay
@@ -54,7 +67,7 @@ tokens, or stack traces.
   Cartflix chooses to reject that case.
 - `AUTH_RATE_LIMITED`: auth attempt was blocked by a future cooldown or rate
   limit.
-- `AUTH_STORAGE_UNAVAILABLE`: `data/auth.json` could not be read or written.
+- `AUTH_STORAGE_UNAVAILABLE`: runtime `auth.json` could not be read or written.
 
 ## Non-Disclosure Rules
 

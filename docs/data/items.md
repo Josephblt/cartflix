@@ -1,6 +1,6 @@
 # Item Catalog
 
-File: `data/items.json`
+File: runtime `items.json`
 
 The item catalog stores known grocery items and their variants.
 

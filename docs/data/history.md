@@ -1,6 +1,6 @@
 # Purchase History
 
-File: `data/history.json`
+File: runtime `history.json`
 
 History stores purchased entries.
 

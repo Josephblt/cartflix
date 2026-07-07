@@ -14,6 +14,10 @@ Auth errors use the shared rules in [Authentication errors](errors.md).
 
 ## `POST /api/auth/setup`
 
+Current behavior: the endpoint succeeds only while the runtime auth file has
+zero users. It is not yet restricted to local management, but it should be
+before setup is exposed through the public app.
+
 Input:
 
 ```json
@@ -67,6 +71,28 @@ Returns whether the current request has a valid session.
     "username": "wagner",
     "displayName": "Wagner"
   }
+}
+```
+
+When no user has been created yet, it returns setup state:
+
+```json
+{
+  "ok": true,
+  "authenticated": false,
+  "setupRequired": true,
+  "user": null
+}
+```
+
+When users exist and the request is not authenticated:
+
+```json
+{
+  "ok": true,
+  "authenticated": false,
+  "setupRequired": false,
+  "user": null
 }
 ```
 

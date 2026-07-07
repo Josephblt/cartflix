@@ -1,6 +1,6 @@
 # Active List
 
-File: `data/list.json`
+File: runtime `list.json`
 
 Cartflix has one permanent active shopping list.
 

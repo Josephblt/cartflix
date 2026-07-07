@@ -1,6 +1,6 @@
 # Quips
 
-File: `data/quips.json`
+File: runtime `quips.json`
 
 Quips store the short personality lines Cartflix shows around the app.
 
@@ -83,7 +83,7 @@ Rules:
 They are not Carty instructions, agent policy, or conversational memory.
 
 If Carty needs durable operating rules, those belong under `agent/`, not in
-`data/quips.json`.
+runtime `quips.json`.
 
 ## Selection Behavior
 
@@ -96,7 +96,7 @@ Recommended baseline:
 - avoid showing the same quip twice in a row when more than one option exists
 - fall back to a small built-in default if the file is missing, invalid, or the
   relevant array is empty
-- do not write selection history into `data/quips.json`
+- do not write selection history into `quips.json`
 
 ## Operation Behavior
 

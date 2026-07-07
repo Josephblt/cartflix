@@ -1,7 +1,7 @@
 # Quip Operation Definitions
 
 Quips store short display lines for Cartflix's personality layer. Quip
-operations act on `data/quips.json`; they do not affect grocery-list behavior
+operations act on runtime `quips.json`; they do not affect grocery-list behavior
 or Carty's operating rules.
 
 Quips are ordered display data. They are usually selected by rotation or random

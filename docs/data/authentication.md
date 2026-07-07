@@ -1,11 +1,15 @@
 # Authentication Data
 
-File: `data/auth.json`
+File: runtime `auth.json`
 
 This file stores local users and password-hash material for Cartflix
 authentication. It describes persisted auth records only. Login behavior,
 session behavior, and HTTP routes are documented under
 [Authentication](../authentication/README.md).
+
+Default location: `~/.local/share/cartflix/auth.json`.
+
+The location can be changed with `CARTFLIX_DATA_DIR`.
 
 ## File Shape
 
@@ -49,7 +53,7 @@ session behavior, and HTTP routes are documented under
 
 ## File Rules
 
-- `data/auth.json` must not contain plaintext passwords.
+- `auth.json` must not contain plaintext passwords.
 - `users[].salt` and `users[].hash` must not be returned from ordinary API
   responses.
 - password changes generate a new salt and update only the current user's auth

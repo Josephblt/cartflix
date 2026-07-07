@@ -11,11 +11,10 @@ planning into a project.
 
 ## Project Status
 
-Cartflix is at the beginning of a clean public rewrite. The original prototype
-proved the shape of the idea; this repository is where the reusable version
-will be built.
-
-Expect rough edges while the foundation is being laid.
+Cartflix is an active local-first rewrite. The current app has the opening,
+login, welcome, local auth, PWA shell, and quip foundation in place. Grocery
+operations, Carty integration, and management tooling are still being designed
+and implemented.
 
 ## What This Is
 
@@ -40,9 +39,12 @@ shopping-list domain, where constraints are more valuable than improvisation.
 cartflix/
   app/              # Cartflix application code
   agent/            # Carty instructions, guardrails, and workflows
-  data/             # Local runtime data
   docs/             # Design notes and implementation notes
 ```
+
+Runtime data is not stored in the repository. By default, Cartflix stores local
+runtime files under `~/.local/share/cartflix/`; this can be changed with
+`CARTFLIX_DATA_DIR`.
 
 ## Data Models
 
@@ -69,9 +71,22 @@ Authentication is documented separately from the grocery data model:
 [Authentication](docs/authentication/README.md). It owns login, sessions,
 password hashing, and access control. Auth endpoints are documented separately
 in [Authentication endpoints](docs/authentication/endpoints.md), with failures
-covered in [Authentication errors](docs/authentication/errors.md). The
-`data/auth.json` file shape remains documented with the other data files because
-it is still a local runtime file.
+covered in [Authentication errors](docs/authentication/errors.md). The runtime
+`auth.json` file shape remains documented with the other data files because it
+is still local runtime data.
+
+## Management
+
+Cartflix will use two roles and two management modes:
+
+- roles: `owner` and `member`
+- modes: local management and remote management
+
+Members can use the app but cannot access management. Owners can access
+management. Local owner management can perform host-level setup and maintenance;
+remote owner management is limited to app-level administration.
+
+The management model is documented in [Management](docs/management.md).
 
 ## Cartflix and Carty
 
@@ -79,7 +94,8 @@ Cartflix is the application: the place where lists are stored, displayed, and
 edited.
 
 Carty is the agent: the constrained assistant that understands grocery-list
-operations and can turn plain-language requests into structured changes.
+operations and can turn plain-language requests into structured intents for
+Cartflix to apply.
 
 The distinction matters. The app owns the data and UI. The agent helps operate
 the workflow.
