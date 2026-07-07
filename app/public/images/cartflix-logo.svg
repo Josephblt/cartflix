@@ -2,21 +2,21 @@
   <defs>
     <linearGradient id="top-left-gradient" x1="111.01138" x2="111.01138" y1="84.902527" y2="176.77258" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#b20710"/>
-      <stop offset="0.5" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="0.59622639" stop-color="#000000" stop-opacity="0"/>
     </linearGradient>
     <linearGradient id="top-right-gradient" x1="282.0853" x2="282.0853" y1="84.902527" y2="176.77258" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#b20710"/>
-      <stop offset="0.5" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="0.60377359" stop-color="#000000" stop-opacity="0"/>
     </linearGradient>
     <radialGradient id="bottom-gradient" cx="196.8083" cy="448.67572" fx="196.8083" fy="448.67572" r="131.472" gradientTransform="matrix(1.1522426 -2.5721027e-8 0 0.22361811 -29.962613 290.93391)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#b20710"/>
-      <stop offset="0.99989998" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
   </defs>
   <path d="m 328.02036,346 v 150 c -30.12803,-7.135 -61.60105,-10.70803 -91.87008,-12.05203 V 346 Z M 236.15028,166 V 16 h 91.87008 v 150 z" fill="#b20710"/>
-  <path d="m 156.94636,16 h -91.87 v 480 c 30.128,-7.135 61.601,-10.70803 91.87,-12.05203 z" fill="#b20710"/>
+  <path d="m 156.94636,16 h -91.87 v 480 c 30.128,-7.135 61.60108,-10.70803 91.87008,-12.05203 z" fill="#b20710"/>
   <path d="m 65.07636,496 c 87.51866,-17.10763 175.16596,-17.19633 262.944,0 v -91.87008 c -87.648,-17.152 -175.296,-17.152 -262.944,0 z" fill="#e50914"/>
-  <path d="m 328.02036,107.87008 -262.944,0 V 16 h 262.944 z" fill="#e50914"/>
+  <path d="M 328.02036,107.87008 H 65.07636 V 16 h 262.944 z" fill="#e50914"/>
   <path d="m 328.02036,153.80512 h -91.87008 v -45.93504 h 91.87008 z" fill="url(#top-right-gradient)"/>
   <path d="M 156.94644,153.80512 H 65.07636 v -45.93504 h 91.87008 z" fill="url(#top-left-gradient)"/>
   <path d="m 236.15023,346.54675 v 45.9495 c 30.58139,1.81122 61.20415,5.65632 91.87013,11.63363 V 358.195 c -30.62338,-5.99275 -61.24675,-9.84312 -91.87013,-11.64825 z" fill="url(#bottom-gradient)"/>
