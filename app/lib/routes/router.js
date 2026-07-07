@@ -1,5 +1,5 @@
-const { pathFromRequest } = require("../request-path");
-const { sendJson } = require("../responses");
+const { pathFromRequest } = require("../helpers/request-path");
+const { sendJson } = require("../helpers/responses");
 const { routeAuth } = require("./auth-routes");
 const { routeQuips } = require("./quip-routes");
 const { routeStatic } = require("./static-routes");

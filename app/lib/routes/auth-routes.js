@@ -1,16 +1,18 @@
 const {
-  SESSION_TTL_MS,
   authStatus,
   changePassword,
+  login,
+  setupFirstUser
+} = require("../auth/auth");
+const {
+  SESSION_TTL_MS,
   clearSession,
   createSession,
-  login,
   sessionCookie,
-  sessionForRequest,
-  setupFirstUser
-} = require("../auth");
-const { readJsonBody } = require("../body");
-const { sendJson } = require("../responses");
+  sessionForRequest
+} = require("../auth/sessions");
+const { readJsonBody } = require("../helpers/body");
+const { sendJson } = require("../helpers/responses");
 
 async function routeAuth(req, res, context) {
   const { config, head, pathname } = context;

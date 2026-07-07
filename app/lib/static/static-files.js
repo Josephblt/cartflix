@@ -1,7 +1,7 @@
 const fs = require("node:fs/promises");
 const path = require("node:path");
-const { pathFromRequest } = require("./request-path");
-const { send, sendJson } = require("./responses");
+const { pathFromRequest } = require("../helpers/request-path");
+const { send, sendJson } = require("../helpers/responses");
 
 const CONTENT_TYPES = {
   ".css": "text/css; charset=utf-8",

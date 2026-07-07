@@ -1,5 +1,5 @@
-const { getOpeningQuip } = require("../quips");
-const { sendJson } = require("../responses");
+const { sendJson } = require("../helpers/responses");
+const { getOpeningQuip } = require("../quips/quips");
 
 async function routeQuips(req, res, context) {
   const { config, head, pathname } = context;

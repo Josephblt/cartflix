@@ -1,5 +1,5 @@
-const { sendJson } = require("../responses");
-const { serveStatic } = require("../static-files");
+const { sendJson } = require("../helpers/responses");
+const { serveStatic } = require("../static/static-files");
 
 async function routeStatic(req, res, context) {
   if (req.method === "GET" || req.method === "HEAD") {
