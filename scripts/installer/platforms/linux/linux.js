@@ -1,12 +1,36 @@
 const { runDoctor } = require("../../doctor");
 const systemd = require("./systemd");
 
-function pending(command) {
-  console.log(`cartflix ${command}`);
-  console.log("Platform: Linux");
-  console.log("");
-  console.log("Linux service support will use systemd --user. Not implemented yet.");
-  process.exitCode = 2;
+function requestStatus(config) {
+  return new Promise((resolve) => {
+    const req = require("node:http").get({
+      hostname: config.host,
+      port: config.port,
+      path: `${config.basePath || ""}/api/auth/status`,
+      timeout: 500
+    }, (res) => {
+      res.resume();
+      resolve(res.statusCode >= 200 && res.statusCode < 500);
+    });
+
+    req.on("timeout", () => {
+      req.destroy();
+      resolve(false);
+    });
+
+    req.on("error", () => resolve(false));
+  });
+}
+
+async function waitForLocalApp(config, timeoutMs = 5000) {
+  const startedAt = Date.now();
+
+  while (Date.now() - startedAt < timeoutMs) {
+    if (await requestStatus(config)) return true;
+    await new Promise((resolve) => setTimeout(resolve, 200));
+  }
+
+  return false;
 }
 
 module.exports = {
@@ -22,19 +46,28 @@ module.exports = {
       }
     });
   },
-  install() {
-    pending("install");
+  async install(context) {
+    await systemd.installService(context);
+    await systemd.startService(context.service.name);
+    await waitForLocalApp(context.config);
+    await this.doctor(context);
   },
-  restart() {
-    pending("restart");
+  async restart(context) {
+    await systemd.restartService(context.service.name);
+    await waitForLocalApp(context.config);
+    await this.doctor(context);
   },
-  start() {
-    pending("start");
+  async start(context) {
+    await systemd.startService(context.service.name);
+    await waitForLocalApp(context.config);
+    await this.doctor(context);
   },
-  stop() {
-    pending("stop");
+  async stop(context) {
+    await systemd.stopService(context.service.name);
+    await this.doctor(context);
   },
-  uninstall() {
-    pending("uninstall");
+  async uninstall(context) {
+    await systemd.uninstallService(context);
+    await this.doctor(context);
   }
 };

@@ -17,8 +17,8 @@ cartflix restart
 
 ## Current Phase
 
-The installer CLI skeleton exists. `doctor` is implemented for Linux and uses
-the Linux platform adapter for `systemd --user` service inspection.
+The installer CLI skeleton exists. Linux uses the platform adapter for
+`systemd --user` service inspection and lifecycle commands.
 
 Current Linux checks:
 
@@ -28,6 +28,14 @@ Current Linux checks:
 - local app response
 - port availability
 - `cartflix.service` install/active/enabled state
+
+Current Linux lifecycle:
+
+- create the platform runtime data directory
+- write `~/.config/systemd/user/cartflix.service`
+- reload `systemd --user`
+- enable/start/stop/restart `cartflix.service`
+- uninstall the service file while leaving runtime data intact
 
 ## Platform Adapters
 
