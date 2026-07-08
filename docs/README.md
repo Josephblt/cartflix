@@ -22,16 +22,18 @@ cartflix/
 
 Cartflix stores runtime data as JSON files outside the repository.
 
-Default location:
+Default locations:
 
 ```text
-~/.local/share/cartflix/
+Linux:   ${XDG_DATA_HOME:-~/.local/share}/cartflix/
+macOS:   ~/Library/Application Support/Cartflix/
+Windows: %LOCALAPPDATA%\Cartflix\
 ```
 
 The location can be overridden with `CARTFLIX_DATA_DIR`.
 
 ```text
-~/.local/share/cartflix/
+<Cartflix data directory>/
   items.json    # Item catalog
   list.json     # Permanent active shopping list
   history.json  # Purchase history

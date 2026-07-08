@@ -1,3 +1,5 @@
+const { runDoctor } = require("../doctor");
+
 function pending(command) {
   console.log(`cartflix ${command}`);
   console.log("Platform: Linux");
@@ -8,8 +10,15 @@ function pending(command) {
 
 module.exports = {
   name: "Linux",
-  doctor() {
-    pending("doctor");
+  doctor(context) {
+    return runDoctor({
+      ...context,
+      platformName: "Linux",
+      service: {
+        name: "cartflix.service",
+        manager: "systemd --user"
+      }
+    });
   },
   install() {
     pending("install");

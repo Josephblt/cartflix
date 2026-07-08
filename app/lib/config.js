@@ -7,9 +7,24 @@ function normalizeBasePath(value) {
   return `/${raw.replace(/^\/+|\/+$/g, "")}`;
 }
 
+function defaultDataDir(env = process.env, platform = process.platform) {
+  const home = os.homedir();
+
+  if (platform === "win32") {
+    const dataHome = env.LOCALAPPDATA || env.APPDATA || path.win32.join(home, "AppData", "Local");
+    return path.win32.join(dataHome, "Cartflix");
+  }
+
+  if (platform === "darwin") {
+    return path.join(home, "Library", "Application Support", "Cartflix");
+  }
+
+  const dataHome = env.XDG_DATA_HOME || path.join(home, ".local", "share");
+  return path.join(dataHome, "cartflix");
+}
+
 function createConfig(env = process.env) {
   const appDir = path.resolve(__dirname, "..");
-  const dataHome = env.XDG_DATA_HOME || path.join(os.homedir(), ".local", "share");
 
   return {
     host: env.HOST || "127.0.0.1",
@@ -21,11 +36,12 @@ function createConfig(env = process.env) {
       : env.CARTFLIX_COOKIE_SECURE === "false"
         ? false
         : null,
-    dataDir: env.CARTFLIX_DATA_DIR || path.join(dataHome, "cartflix"),
+    dataDir: env.CARTFLIX_DATA_DIR || defaultDataDir(env),
     publicDir: env.CARTFLIX_PUBLIC_DIR || path.join(appDir, "public")
   };
 }
 
 module.exports = {
-  createConfig
+  createConfig,
+  defaultDataDir
 };

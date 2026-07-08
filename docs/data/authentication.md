@@ -7,7 +7,8 @@ authentication. It describes persisted auth records only. Login behavior,
 session behavior, and HTTP routes are documented under
 [Authentication](../authentication/README.md).
 
-Default location: `~/.local/share/cartflix/auth.json`.
+Default location: `auth.json` inside the current platform's Cartflix data
+directory.
 
 The location can be changed with `CARTFLIX_DATA_DIR`.
 

@@ -43,8 +43,8 @@ cartflix/
 ```
 
 Runtime data is not stored in the repository. By default, Cartflix stores local
-runtime files under `~/.local/share/cartflix/`; this can be changed with
-`CARTFLIX_DATA_DIR`.
+runtime files in the standard per-user application data directory for the
+current operating system. This can be changed with `CARTFLIX_DATA_DIR`.
 
 ## Data Models
 
