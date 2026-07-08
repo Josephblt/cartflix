@@ -28,6 +28,27 @@ async function systemctl(args, options = {}) {
   }
 }
 
+async function systemdAnalyze(args, options = {}) {
+  try {
+    const result = await execFileAsync("systemd-analyze", ["--user", ...args], {
+      timeout: options.timeout || 3000
+    });
+
+    return {
+      ok: true,
+      stdout: result.stdout.trim(),
+      stderr: result.stderr.trim()
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      code: error.code,
+      stdout: String(error.stdout || "").trim(),
+      stderr: String(error.stderr || "").trim()
+    };
+  }
+}
+
 function userSystemdDir(env = process.env) {
   const configHome = env.XDG_CONFIG_HOME || path.join(os.homedir(), ".config");
   return path.join(configHome, "systemd", "user");
@@ -71,6 +92,19 @@ function serviceFile(context) {
 
 function assertSystemctl(result, action) {
   if (result.ok) return;
+
+  const detail = result.stderr || result.stdout || result.code || "unknown error";
+  const error = new Error(`${action} failed: ${detail}`);
+  error.exitCode = 1;
+  throw error;
+}
+
+function assertSystemdAnalyze(result, action) {
+  if (result.ok) return;
+  if (result.code === "ENOENT") {
+    console.log("systemd-analyze is not available; skipping service file verification.");
+    return;
+  }
 
   const detail = result.stderr || result.stdout || result.code || "unknown error";
   const error = new Error(`${action} failed: ${detail}`);
@@ -123,16 +157,36 @@ async function disableService(serviceName) {
 async function installService(context) {
   const serviceName = context.service.name;
   const servicePath = serviceFilePath(serviceName, context.env);
+  const statusBefore = await serviceStatus(serviceName);
+  const nextServiceFile = serviceFile(context);
+  let existingServiceFile = null;
+
+  try {
+    existingServiceFile = await fs.readFile(servicePath, "utf8");
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
 
   await fs.mkdir(context.config.dataDir, { recursive: true });
   await fs.mkdir(path.dirname(servicePath), { recursive: true });
-  await fs.writeFile(servicePath, serviceFile(context), "utf8");
+
+  const changed = existingServiceFile !== nextServiceFile;
+  if (changed) {
+    await fs.writeFile(servicePath, nextServiceFile, "utf8");
+    assertSystemdAnalyze(await systemdAnalyze(["verify", servicePath]), `verify ${serviceName}`);
+  }
 
   await daemonReload();
   await enableService(serviceName);
 
-  console.log(`Installed ${serviceName}`);
+  console.log(changed ? `Configured ${serviceName}` : `${serviceName} is already configured`);
   console.log(`Service file: ${servicePath}`);
+
+  return {
+    changed,
+    servicePath,
+    statusBefore
+  };
 }
 
 async function uninstallService(context) {
@@ -160,6 +214,7 @@ module.exports = {
   serviceStatus,
   startService,
   stopService,
+  systemdAnalyze,
   uninstallService,
   systemctl
 };

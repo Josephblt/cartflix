@@ -33,8 +33,12 @@ Current Linux lifecycle:
 
 - create the platform runtime data directory
 - write `~/.config/systemd/user/cartflix.service`
+- verify the service file when `systemd-analyze` is available
 - reload `systemd --user`
 - enable/start/stop/restart `cartflix.service`
+- reinstall idempotently and restart the service when the unit changes
+- block start/install when the configured port is occupied by something other
+  than Cartflix
 - uninstall the service file while leaving runtime data intact
 
 ## Platform Adapters

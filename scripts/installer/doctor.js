@@ -1,7 +1,6 @@
 const fs = require("node:fs/promises");
-const http = require("node:http");
-const net = require("node:net");
 const path = require("node:path");
+const { checkPort, requestStatus } = require("./health");
 
 const REQUIRED_APP_FILES = [
   "app/server.js",
@@ -81,51 +80,6 @@ async function checkDataDir(dataDir) {
       detail: `missing; ${parent} is not writable`
     };
   }
-}
-
-function requestStatus(config) {
-  return new Promise((resolve) => {
-    const req = http.get({
-      hostname: config.host,
-      port: config.port,
-      path: `${config.basePath || ""}/api/auth/status`,
-      timeout: 1000
-    }, (res) => {
-      res.resume();
-      resolve({
-        ok: res.statusCode >= 200 && res.statusCode < 500,
-        statusCode: res.statusCode
-      });
-    });
-
-    req.on("timeout", () => {
-      req.destroy();
-      resolve({ ok: false, error: "timeout" });
-    });
-
-    req.on("error", (error) => {
-      resolve({ ok: false, error: error.code || error.message });
-    });
-  });
-}
-
-function checkPort(host, port) {
-  return new Promise((resolve) => {
-    const server = net.createServer();
-
-    server.once("error", (error) => {
-      resolve({
-        available: false,
-        error: error.code || error.message
-      });
-    });
-
-    server.once("listening", () => {
-      server.close(() => resolve({ available: true }));
-    });
-
-    server.listen(port, host);
-  });
 }
 
 function verdict({ files, dataDir, app, port, service }) {
