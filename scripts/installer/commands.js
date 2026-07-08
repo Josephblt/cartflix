@@ -1,3 +1,4 @@
+const { createInstallerContext } = require("./context");
 const { getPlatformAdapter } = require("./platform");
 
 const COMMANDS = new Set([
@@ -46,13 +47,14 @@ async function runCommand(args) {
   }
 
   const platform = getPlatformAdapter();
+  const context = createInstallerContext({ args: args.slice(1) });
 
   if (typeof platform[command] !== "function") {
     notImplemented(command, platform);
     return;
   }
 
-  await platform[command]({ args: args.slice(1) });
+  await platform[command](context);
 }
 
 module.exports = {

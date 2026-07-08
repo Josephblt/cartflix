@@ -2,12 +2,7 @@ const fs = require("node:fs/promises");
 const http = require("node:http");
 const net = require("node:net");
 const path = require("node:path");
-const { execFile } = require("node:child_process");
-const { promisify } = require("node:util");
-const { createConfig } = require("../../app/lib/config");
 
-const execFileAsync = promisify(execFile);
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const REQUIRED_APP_FILES = [
   "app/server.js",
   "app/lib/config.js",
@@ -33,11 +28,11 @@ async function pathExists(filePath) {
   }
 }
 
-async function checkRequiredFiles() {
+async function checkRequiredFiles(repoRoot) {
   const missing = [];
 
   for (const relativePath of REQUIRED_APP_FILES) {
-    if (!(await pathExists(path.join(REPO_ROOT, relativePath)))) {
+    if (!(await pathExists(path.join(repoRoot, relativePath)))) {
       missing.push(relativePath);
     }
   }
@@ -133,36 +128,6 @@ function checkPort(host, port) {
   });
 }
 
-async function systemctl(args) {
-  try {
-    const result = await execFileAsync("systemctl", ["--user", ...args], { timeout: 2000 });
-    return {
-      ok: true,
-      stdout: result.stdout.trim(),
-      stderr: result.stderr.trim()
-    };
-  } catch (error) {
-    return {
-      ok: false,
-      code: error.code,
-      stdout: String(error.stdout || "").trim(),
-      stderr: String(error.stderr || "").trim()
-    };
-  }
-}
-
-async function checkLinuxService(serviceName) {
-  const cat = await systemctl(["cat", serviceName]);
-  const active = await systemctl(["is-active", serviceName]);
-  const enabled = await systemctl(["is-enabled", serviceName]);
-
-  return {
-    installed: cat.ok,
-    active: active.ok ? active.stdout : active.stdout || "inactive",
-    enabled: enabled.ok ? enabled.stdout : enabled.stdout || "disabled"
-  };
-}
-
 function verdict({ files, dataDir, app, port, service }) {
   if (!files.ok) return "Cartflix app files are incomplete.";
   if (!dataDir.ok) return "Cartflix runtime data path is not writable.";
@@ -172,17 +137,16 @@ function verdict({ files, dataDir, app, port, service }) {
   return "Cartflix is not installed or not running yet.";
 }
 
-async function runDoctor({ platformName, service }) {
-  const config = createConfig();
+async function runDoctor({ config, paths, platformName, service }) {
   const nodeOk = nodeMajor() >= 20;
-  const files = await checkRequiredFiles();
+  const files = await checkRequiredFiles(paths.repoRoot);
   const dataDir = await checkDataDir(config.dataDir);
   const app = await requestStatus(config);
   const port = app.ok
     ? { available: false, inUseByCartflix: true }
     : await checkPort(config.host, config.port);
-  const serviceStatus = service?.manager === "systemd --user"
-    ? await checkLinuxService(service.name)
+  const serviceStatus = typeof service?.status === "function"
+    ? await service.status()
     : null;
 
   console.log("Cartflix doctor");

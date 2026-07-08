@@ -1,4 +1,5 @@
 const { runDoctor } = require("../doctor");
+const systemd = require("./linux-systemd");
 
 function pending(command) {
   console.log(`cartflix ${command}`);
@@ -15,8 +16,9 @@ module.exports = {
       ...context,
       platformName: "Linux",
       service: {
-        name: "cartflix.service",
-        manager: "systemd --user"
+        name: context.service.name,
+        manager: systemd.manager,
+        status: () => systemd.serviceStatus(context.service.name)
       }
     });
   },

@@ -105,5 +105,6 @@ The planned management model is documented in [Management](management.md).
 
 Integration setup notes:
 
+- [Installer](deployment/installer.md)
 - [Carty integration](integrations/carty.md)
 - [Tailscale deployment](deployment/tailscale.md)
