@@ -1,0 +1,17 @@
+{
+  "name": "cartflix",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first grocery-list app with an installer CLI.",
+  "license": "MIT",
+  "bin": {
+    "cartflix": "./scripts/cartflix.js"
+  },
+  "scripts": {
+    "cartflix": "node scripts/cartflix.js",
+    "doctor": "node scripts/cartflix.js doctor"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
