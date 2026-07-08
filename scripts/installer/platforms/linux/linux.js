@@ -1,5 +1,5 @@
-const { runDoctor } = require("../doctor");
-const systemd = require("./linux-systemd");
+const { runDoctor } = require("../../doctor");
+const systemd = require("./systemd");
 
 function pending(command) {
   console.log(`cartflix ${command}`);

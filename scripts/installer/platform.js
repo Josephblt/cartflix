@@ -1,6 +1,6 @@
-const linux = require("./platforms/linux");
-const macos = require("./platforms/macos");
-const windows = require("./platforms/windows");
+const linux = require("./platforms/linux/linux");
+const macos = require("./platforms/macos/macos");
+const windows = require("./platforms/windows/windows");
 
 function getPlatformAdapter(platform = process.platform) {
   if (platform === "linux") return linux;
