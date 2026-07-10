@@ -34,6 +34,7 @@ function setMessage(message) {
 async function submitSetup(event) {
   event.preventDefault();
 
+  const form = event.currentTarget;
   const displayName = element("displayName");
   const username = element("username");
   const password = element("password");
@@ -51,7 +52,7 @@ async function submitSetup(event) {
       })
     });
     if (password) password.value = "";
-    event.currentTarget.dispatchEvent(new CustomEvent("cartflix:setup", {
+    form.dispatchEvent(new CustomEvent("cartflix:setup", {
       bubbles: true,
       detail: { user: result.user }
     }));

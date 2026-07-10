@@ -33,6 +33,7 @@ function setMessage(message) {
 async function submitLogin(event) {
   event.preventDefault();
 
+  const form = event.currentTarget;
   const username = element("username");
   const password = element("password");
 
@@ -48,7 +49,7 @@ async function submitLogin(event) {
       })
     });
     if (password) password.value = "";
-    event.currentTarget.dispatchEvent(new CustomEvent("cartflix:login", {
+    form.dispatchEvent(new CustomEvent("cartflix:login", {
       bubbles: true,
       detail: { user: result.user }
     }));
