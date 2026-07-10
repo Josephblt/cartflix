@@ -25,10 +25,12 @@ function validateDisplayName(displayName, username) {
 async function authStatus(config, req) {
   const auth = await readAuth(config);
   const session = sessionForRequest(req);
+  const setupRequired = validateAuthData(auth) && auth.users.length === 0;
 
   return {
     authenticated: Boolean(session),
-    setupRequired: validateAuthData(auth) && auth.users.length === 0,
+    setupAllowed: setupRequired && config.isLocalRequest(req),
+    setupRequired,
     user: session?.user || null
   };
 }
@@ -40,6 +42,9 @@ async function setupFirstUser(config, input) {
   }
   if (auth.users.length > 0) {
     throw Object.assign(new Error("Setup is already complete."), { status: 409 });
+  }
+  if (!config.isLocalRequest(input.req)) {
+    throw Object.assign(new Error("First-time setup must be completed locally."), { status: 403 });
   }
 
   const username = validateUsername(input.username);

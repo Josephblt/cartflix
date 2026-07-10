@@ -19,8 +19,8 @@ Carty workflow behavior.
 - sessions use opaque server-generated tokens
 - session token stored in an HTTP-only cookie
 - password change supported
-- first-user setup exists at the API layer
-- first-user setup should become local-management-only before public use
+- first-user setup is available through the UI when no users exist
+- first-user setup is local-only at the API layer
 
 The runtime `auth.json` file shape is documented in
 [Authentication data](../data/authentication.md).

@@ -15,8 +15,8 @@ Auth errors use the shared rules in [Authentication errors](errors.md).
 ## `POST /api/auth/setup`
 
 Current behavior: the endpoint succeeds only while the runtime auth file has
-zero users. It is not yet restricted to local management, but it should be
-before setup is exposed through the public app.
+zero users and the request is local. Remote/public requests receive
+`403 Forbidden`.
 
 Input:
 
@@ -31,10 +31,12 @@ Input:
 Behavior:
 
 - only succeeds while the auth file has zero users
+- only succeeds from a local host/origin
 - validates username and password
 - hashes the password with `scrypt`
 - creates the first local user
 - creates a session on success
+- returns `403 Forbidden` for remote/public setup attempts
 - returns `409 Conflict` after setup is complete
 
 ## `POST /api/auth/login`
@@ -80,10 +82,13 @@ When no user has been created yet, it returns setup state:
 {
   "ok": true,
   "authenticated": false,
+  "setupAllowed": true,
   "setupRequired": true,
   "user": null
 }
 ```
+
+`setupAllowed` is `true` only when setup is required and the request is local.
 
 When users exist and the request is not authenticated:
 
@@ -91,6 +96,7 @@ When users exist and the request is not authenticated:
 {
   "ok": true,
   "authenticated": false,
+  "setupAllowed": false,
   "setupRequired": false,
   "user": null
 }

@@ -1,5 +1,6 @@
 const path = require("node:path");
 const os = require("node:os");
+const { isLocalRequest } = require("./helpers/local-request");
 
 function normalizeBasePath(value) {
   const raw = String(value || "/").trim();
@@ -37,6 +38,7 @@ function createConfig(env = process.env) {
         ? false
         : null,
     dataDir: env.CARTFLIX_DATA_DIR || defaultDataDir(env),
+    isLocalRequest,
     publicDir: env.CARTFLIX_PUBLIC_DIR || path.join(appDir, "public")
   };
 }

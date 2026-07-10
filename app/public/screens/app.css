@@ -3,4 +3,5 @@
 @import "./shared/screen.css";
 @import "./opening/opening-screen.css";
 @import "./login/login-screen.css";
+@import "./setup/setup-screen.css";
 @import "./welcome/welcome-screen.css";

@@ -23,7 +23,7 @@ async function routeAuth(req, res, context) {
   }
 
   if (req.method === "POST" && pathname === "/api/auth/setup") {
-    const user = await setupFirstUser(config, await readJsonBody(req));
+    const user = await setupFirstUser(config, { ...(await readJsonBody(req)), req });
     const token = createSession(user);
 
     sendJson(res, 200, { ok: true, user }, {
